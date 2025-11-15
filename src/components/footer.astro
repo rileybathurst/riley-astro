@@ -1,0 +1,78 @@
+---
+
+---
+<footer class="site-footer">
+  <div class="footer_info">
+    <div class="footer_copyright">
+      <ul>
+        <li>
+          <a href="/" rel="home">Home</a>
+        </li>
+        <li>
+          2009 - {new Date().getFullYear()}
+        </li>
+        <li>
+          <a href="/now">Now</a>
+        </li>
+      </ul>
+    </div>{/* .footer_copyright */}
+
+    <nav id="bottom-menu" class="">
+      <ul>
+        {/* // TODO need to build search */}
+        {/* <li key="search"><Link to='/search'>Search</Link></li> */}
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li>
+          <a href="/styleguides">Styleguides</a>
+        </li>
+        {
+          /* I can do something more interesting with this as a show whats available maybe an accordian or work in with what I already have */
+        }
+      </ul>
+    </nav>
+
+    {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address */}
+    <address class="footer_contact">
+      {/* add some more details to this ie subject */}
+      <p>
+        <!-- <a href={`mailto:${useSiteMetadata().email}`}> -->
+          <!-- {useSiteMetadata().email} -->
+        <!-- </a> -->
+      </p>
+      <p>
+        <!-- <a href={`tel:+${useSiteMetadata().phone}`}>{useSiteMetadata().phone}</a> -->
+      </p>
+    </address>
+  </div>
+
+  <div class="background-primary background-primary__social-icons">
+    <div class="social-icons">
+      {/* TODO: move these to comopnents */}
+      <div class="fp-box">
+        <!-- <a href="https://www.instagram.com/rileybathurst/"> -->
+          <!-- <Instagram /> -->
+        <!-- </a> -->
+      </div>
+      {
+        /*         <div class="fp-box">
+          <a href="https://www.linkedin.com/in/rileybathurst/">
+            <LinkedIn />
+          </a>
+        </div> */
+      }
+      {/* // TODO: add a link to /rss.xml */}
+      <div>
+        <!-- <a href="/rss.xml"> -->
+          {/* // ! this doesnt work yet */}
+          <!-- <RSS /> -->
+        <!-- </a> -->
+      </div>
+      <div class="fp-box">
+        <!-- <a href="https://github.com/rileybathurst"> -->
+          <!-- <GitHub /> -->
+        <!-- </a> -->
+      </div>
+    </div>
+  </div>
+</footer>

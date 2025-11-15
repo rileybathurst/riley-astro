@@ -9,6 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.15.3"
+    "@astrojs/react": "^4.4.2",
+    "@strapi/blocks-react-renderer": "^1.0.2",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.15.3",
+    "husky": "^9.1.7",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }
