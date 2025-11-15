@@ -57,40 +57,44 @@ export default async function fetchApi<T>({
 		}${more ? `&pagination[pageSize]=100&pagination[page]=100` : ""}`,
 	);
 
-  // console.log('Fetching from Strapi API:');
+  	// console.log('Fetching from Strapi API:');
 	// console.log(url.toString());
 
 	let allData: T[] = [];
 	let page = 1;
-	// let hasMore = more;
 
-	// while (hasMore) {
+	const res = await fetch(url.toString(), {
+		method: "GET",
+		headers: {
+			Authorization: `Bearer ${import.meta.env.STRAPI_TOKEN}`,
+		},
+	});
+	// const { data, meta } = await res.json();
+	const pageData = await res.json();
+
+	// if (wrappedByKey) { // I think everything is wrapped by data?
+	const data = pageData.data || pageData;
+	console.log('Strapi API response data:');
+	console.log(data);
+
+/* 	while (more) {
 		url.searchParams.set("pagination[page]", page.toString());
 
-		const res = await fetch(url.toString(), {
-			method: "GET",
-			headers: {
-				Authorization: `Bearer ${import.meta.env.STRAPI_TOKEN}`,
-			},
-		});
-		// const { data, meta } = await res.json();
-
-		const pageData = await res.json();
-    // console.log(`Page ${page} data:`);
-    // console.log(pageData);
+		// console.log(`Page ${page} data:`);
+		// console.log(pageData);
 
 		if (wrappedByKey) {
 			allData = allData.concat(pageData[wrappedByKey]);
 		} else {
 			allData = allData.concat(pageData);
 		}
-
+		break;
 		/* hasMore =
 			pageData.meta.pagination.page < pageData.meta.pagination.pageCount;
-		page++; */
-	// }
+		page++;
+	}  */
 
-  console.log(allData);
+	// console.log(typeof pageData);
 
-	return allData as T;
+	return data as T;
 }

@@ -1,0 +1,12 @@
+---
+import fetchApi from "../lib/strapi";
+import type { MetaType } from "../types/about-type";
+
+const meta: MetaType[] = await fetchApi({
+    endpoint: "meta", // the content type to fetch
+    wrappedByKey: "data", // the key to unwrap the response
+    more: false,
+});
+---
+
+<title>{meta[0].name}</title>

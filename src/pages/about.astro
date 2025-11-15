@@ -1,0 +1,23 @@
+---
+import Layout from "../components/layout.astro";
+import { BlocksRenderer, type BlocksContent} from "@strapi/blocks-react-renderer";
+import fetchApi from "../lib/strapi";
+
+type aboutTypes = {
+    description: BlocksContent;
+};
+const about: aboutTypes[] = await fetchApi({
+    endpoint: "about", // the content type to fetch
+    wrappedByKey: "data", // the key to unwrap the response
+    more: false,
+});
+
+// console.log(about);
+---
+
+<Layout>
+    <main>
+        <h1>About</h1>
+        <BlocksRenderer content={about[0].description} />
+    </main>
+</Layout>

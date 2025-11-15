@@ -1,4 +1,14 @@
 ---
+import fetchApi from '../lib/strapi';
+import type { AboutType } from '../types/about-type';
+
+const about: AboutType[] = await fetchApi({
+  endpoint: 'about', // the content type to fetch
+  wrappedByKey: 'data', // the key to unwrap the response
+  more: false,
+});
+
+// console.log(about);
 
 ---
 <footer class="site-footer">
@@ -9,7 +19,7 @@
           <a href="/" rel="home">Home</a>
         </li>
         <li>
-          2009 - {new Date().getFullYear()}
+          {about.established} - {new Date().getFullYear()}
         </li>
         <li>
           <a href="/now">Now</a>
