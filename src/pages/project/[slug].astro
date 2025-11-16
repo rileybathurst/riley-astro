@@ -1,0 +1,32 @@
+---
+import Layout from "../../components/layout.astro";
+import fetchApi from "../../lib/strapi";
+
+type projectTypes = {
+    title: string;
+    slug: string;
+};
+
+export async function getStaticPaths() {
+    const projects = await fetchApi<projectTypes[]>({
+        endpoint: "projects", // the content type to fetch
+        wrappedByKey: "data", // the key to unwrap the response
+        // more: true,
+    });
+
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: project,
+    }));
+    
+}
+
+const project = Astro.props;
+
+---
+
+<Layout>
+    <main>
+        <h1>{project.title}</h1>
+    </main>
+</Layout>

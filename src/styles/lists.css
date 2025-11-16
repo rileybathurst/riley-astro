@@ -1,0 +1,80 @@
+/*------------------------------------*/
+/* #LISTS */
+/*------------------------------------*/
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: var(--vinson);
+}
+
+/*------------------------------------*/
+
+.navigation-top ul {
+  padding-left: 0;
+}
+
+.navigation-top ul li {
+  font-size: var(--kilimanjaro);
+  font-weight: bold;
+  /* this has to be a padding otherwise you loose the hr on scroll between */
+  padding-block-start: var(--vinson);
+  margin-block-end: 0;
+  list-style: none; /* this seems like its doubling down on .menu but was needed */
+
+  @media (min-width: 40rem) {
+    font-size: var(--aconcagua);
+  }
+}
+
+.navigation-top ul li a {
+  /* this might not be for all but it is for now */
+  display: flex;
+  padding: 0;
+}
+
+.single .navigation-top ul {
+  margin: 0;
+}
+
+.category-sub li {
+  text-align: center;
+}
+
+.category-sub li {
+  a {
+    font-weight: bold;
+    background: var(--cherry-100);
+    color: var(--brilliance);
+    padding: var(--vinson);
+    display: block;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background: var(--cherry-300);
+    text-decoration: line-through;
+  }
+}
+
+.footer_menu li {
+  a {
+    background: var(--cherry-100);
+    color: var(--brilliance);
+    padding: var(--vinson);
+    text-decoration: none;
+    /* fill the box */
+    display: block;
+    transition: var(--global-transition);
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: line-through;
+    background: var(--cherry-300);
+  }
+}

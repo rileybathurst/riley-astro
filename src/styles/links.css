@@ -1,0 +1,126 @@
+a {
+  color: var(--cherry-100);
+}
+
+a:hover {
+  text-decoration: line-through;
+  color: var(--cherry-300);
+}
+
+a::selection {
+  color: var(--brilliance);
+}
+
+/*------------------------------------*/
+
+.navigation-top a:hover {
+  text-decoration: line-through;
+}
+
+.page-title a {
+  color: var(--brilliance);
+}
+
+.article-footer a,
+.quote-content p a,
+.quote-footer a {
+  /* why removing the indication of a link? */
+  text-decoration: none;
+  color: var(--cherry-100);
+}
+
+.article-footer a:hover,
+.quote-content p a:hover,
+.quote-footer a:hover {
+  text-decoration: line-through;
+}
+
+.featured-category-title a:hover {
+  text-decoration: line-through;
+}
+
+.category-titles a {
+  color: var(--cherry-100);
+}
+
+.category-titles a:hover {
+  text-decoration: line-through;
+}
+
+/*------------------------------------*/
+/* #BRESDCRUMBS */
+/*------------------------------------*/
+
+.breadcrumbs a {
+  /* TODO dark-gray doesn't pass contrast checks but I didn't want to go all the way to black */
+  color: #575757;
+  text-decoration: line-through;
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--kingly-cloud);
+  }
+}
+
+.breadcrumbs a:hover {
+  color: var(--cherry-100);
+  text-decoration: underline;
+}
+
+/*------------------------------------*/
+/* #PAGINATION */
+/*------------------------------------*/
+
+.pagination a {
+  color: var(--cherry-100);
+  text-decoration: underline;
+}
+
+.pagination a:hover,
+.pagination .current {
+  text-decoration: line-through;
+  color: var(--cherry-100);
+  background: none;
+}
+
+.pagination .nav-links .next,
+.pagination .nav-links .prev {
+  border-bottom: none;
+  /* would this have a box shadow? */
+  box-shadow: none;
+  color: var(--black-metal);
+  @media (prefers-color-scheme: dark) {
+    color: var(--brilliance);
+  }
+}
+
+.pagination .nav-links .next,
+.pagination .nav-links .prev {
+  text-decoration: underline;
+}
+
+.pagination .nav-links .next:hover,
+.pagination .nav-links .prev:hover {
+  text-decoration: line-through;
+}
+
+/*------------------------------------*/
+
+.article-tags a {
+  /*
+  TODO: @extend was sass
+  @extend button; */
+  margin-bottom: 0;
+
+  @media (min-width: 40rem) {
+    text-align: right;
+  }
+}
+
+/* TODO: this isnt how links look */
+.featured-subheader a {
+  color: gray;
+}
+
+.primary-menu a {
+  text-decoration: none;
+}

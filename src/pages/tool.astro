@@ -1,0 +1,27 @@
+---
+import Layout from "../components/layout.astro";
+import fetchApi from "../lib/strapi";
+
+type toolTypes = {
+    name: string;
+    slug: string;
+};
+const tools: toolTypes[] = await fetchApi({
+    endpoint: "tools", // the content type to fetch
+    // wrappedByKey: "data", // the key to unwrap the response
+    // more: false,
+});
+---
+
+<Layout>
+    <main>
+        <h1>tool</h1>
+        <hr />
+        {tools.map((tool) => (
+            <article>
+                    {tool.name}
+            </article>
+        ))}
+        <hr />
+    </main>
+</Layout>

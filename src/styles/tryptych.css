@@ -1,0 +1,98 @@
+/* started here https://codepen.io/rileybathurst-the-encoder/pen/YmEGGG */
+
+/* // dont kick in on small as the whole layout is soo different */
+/* @media (min-width: $stork) { */
+#snap-scroll-container-coordinates {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+
+  -webkit-scroll-snap-type: mandatory;
+  scroll-snap-type: x mandatory;
+
+  -scroll-snap-destination: 50% 50%;
+  -webkit-scroll-snap-destination: 50% 50%;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.child {
+  /* guess and check // I think this only works right at largest size */
+  width: 92%;
+  /* both sides comes to the same as a grid gap */
+  margin: var(--vinson);
+  position: relative;
+  background-color: #f0f0f0;
+  display: inline-block;
+
+  scroll-snap-align: center;
+  scroll-snap-coordinate: 50% 50%;
+}
+
+.child img {
+  width: 100%;
+  /* maybe I should do something better for images of a different height but for now this works */
+  vertical-align: middle;
+}
+
+#gallery {
+  display: grid;
+
+  #snap-scroll-container-coordinates,
+  #left,
+  #right {
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+
+#left,
+#right {
+  z-index: 1;
+  align-self: center;
+  font-size: 6rem;
+}
+
+#left {
+  /* make these as small as possible as if your over the the scroll behind doesnt work */
+  justify-self: left;
+  padding-left: var(--vinson);
+}
+
+#right {
+  justify-self: right;
+  padding-right: var(--vinson);
+}
+
+#left a,
+#right a {
+  text-decoration: none;
+  color: var(--cherry-100);
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+}
+
+html {
+  /* im not 100% sure this is doing what I want with the sideways but its helping for the vertical */
+  scroll-behavior: smooth;
+}
+
+.tryptych-caption {
+  text-align: center;
+}
+
+button {
+  /* a lot of resets from what I have done */
+  padding: 0;
+  background: none;
+  color: var(--cherry-100);
+  opacity: 0.8;
+}
+
+button:hover {
+  background: none;
+  color: var(--cherry-300);
+}
+/* } */

@@ -1,0 +1,144 @@
+/*------------------*/
+/* #ANIMATION */
+/*------------------*/
+
+.titleSpinner {
+  display: flex;
+  flex-direction: column;
+  padding-block-end: 0;
+  padding-inline-start: 0;
+
+  /* TODO: 🦜 not a bird */
+  @media (min-width: 40rem) {
+    flex-direction: row;
+  }
+
+  > * {
+    margin-block-end: 0;
+  }
+}
+
+#changeText {
+  height: var(--denali);
+  line-height: var(--everest);
+  overflow-y: hidden;
+
+  /* TODO: 🦜 not a bird */
+  @media (min-width: 40rem) {
+    /* TODO: same as the line height so make it a variable */
+    height: var(--everest);
+    margin-block-end: var(--global-margin);
+  }
+
+  h2 {
+    /* this is now in the box above */
+    margin: 0;
+    /* @keyframes duration | delay | iteration-count | name */
+    animation: 5s 3s infinite slideUp;
+  }
+}
+
+/* 100% divided by double the number of lines to account for pauses */
+/* 100% shows a tiny amount of drops which is super annoying */
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+
+  16% {
+    transform: translateY(-100%);
+  }
+
+  32% {
+    transform: translateY(-100%);
+  }
+
+  48% {
+    transform: translateY(-200%);
+  }
+
+  64% {
+    transform: translateY(-200%);
+  }
+
+  80% {
+    transform: translateY(0);
+  }
+}
+
+/*------------------------------------*/
+
+/* TODO: rename this */
+
+.cfimg {
+  display: grid;
+}
+.cfimg picture {
+  grid-column: 1;
+  grid-row: 1;
+  animation-name: FadeInOut;
+  animation-duration: 20s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  z-index: 1;
+}
+
+/* http://css3.bradshawenterprises.com/cfimg/ */
+/* Just do the link I dont understand the math
+For "n" images You must define:
+a=presentation time for one image
+b=duration for cross fading
+Total animation-duration is of course t=(a+b)*n
+
+animation-delay = t/n or = a+b
+
+Percentage for keyframes:
+
+    0%
+    a/t*100%
+    (a+b)/t*100% = 1/n*100%
+    100%-(b/t*100%)
+    100%
+
+css slidesshow in Rileys google drive can do all the math
+
+*/
+@keyframes FadeInOut {
+  0% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cfimg picture:nth-of-type(1) {
+  animation-delay: 16s;
+}
+.cfimg picture:nth-of-type(2) {
+  animation-delay: 12s;
+}
+.cfimg picture:nth-of-type(3) {
+  animation-delay: 8s;
+}
+.cfimg picture:nth-of-type(4) {
+  animation-delay: 4s;
+}
+.cfimg picture:nth-of-type(5) {
+  animation-delay: 0;
+}
+
+/*------------------------------------*/
+
+.spine-border {
+  transition: 3s ease;
+}

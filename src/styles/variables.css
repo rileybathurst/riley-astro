@@ -1,0 +1,99 @@
+/*------------------------------------*\
+  #VARIABLES
+\*------------------------------------*/
+
+:root {
+  /*------------------*/
+  /* #COLORS */
+  /*------------------*/
+
+  /* louie change */
+  --pitch: 2.5%;
+  --dark: 12.5%;
+  --dull: 25%;
+  --dim: 37.5%;
+  --mid: 50%;
+  --glow: 62.5%;
+  --light: 75%;
+  --bright: 87.5%;
+  --brilliant: 97.5%;
+
+  --black-metal: hsl(0, 0%, 2.5%);
+  --black-out: hsl(0, 0%, 12.5%);
+  --raven-black: hsl(0, 0%, 25%);
+  --industrial-revolution: hsl(0, 0%, 37.5%);
+  /* grey */
+  --cold-grey: hsl(0, 0%, 62.5%);
+  --tin-soldier: hsl(0, 0%, 75%);
+  --kingly-cloud: hsl(0, 0%, 87.5%);
+  --brilliance: hsl(0, 0%, 97.5%);
+
+  --cherry-100: hsl(0, 75%, 50%);
+  --cherry-200: hsl(0, 75%, 37.5%);
+  --cherry-300: hsl(0, 75%, 25%);
+
+  /*------------------*/
+  /* #SHADOWS */
+  /*------------------*/
+
+  --mesosphere: 0 5px 12px hsla(0, 0%, 0%, 0.4),
+    0 18px 32px hsla(0, 0%, 0%, 0.16);
+  --stratosphere: 0 2px 3px hsla(0, 0%, 0%, 0.12),
+    0 3px 6px hsla(0, 0%, 0%, 0.14);
+  --troposphere: 0 2px 3px hsla(0, 0%, 0%, 0.12),
+    0 3px 6px hsla(0, 0%, 0%, 0.14);
+
+  /*------------------*/
+  /* #WIDTHS */
+  /*------------------*/
+
+  --vulture: 10rem;
+  --stork: 18rem; /* 288px */
+  /* ? wheres my kinda default phone to ipad size */
+  --condor: 30rem;
+  --pelican: 50rem;
+  --albatross: 80rem;
+
+  /* iphone 14 2532 x 1170 at 460 ppi */
+  /*  */
+
+  /*------------------*/
+  /* #TYPOGHRAPY */
+  /* 7 Summits */
+  /*------------------*/
+
+  --everest: 3.5rem;
+  --aconcagua: 2.75rem;
+  --denali: 2rem;
+  --kilimanjaro: 1.5rem;
+  --elbrus: 1.25rem;
+  --vinson: 1rem;
+  --kosciuszko: 0.75rem;
+
+  /* TODO: Oops wrong metaphor */
+  /* https://www.discoverwildlife.com/animal-facts/birds/smallest-birds-in-the-world */
+  /* theres a bunch a bunch of hummingbirds */
+  --woodstar: 0.125em;
+  --weebill: 0.25em;
+
+  /* TODO check the quotes */
+  --sans-font: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  --code-font: "Monaco", monospace;
+
+  /*------------------*/
+  /* #TIMING */
+  /*------------------*/
+
+  /* used for hover states I think I can remove this from being a "global" */
+  --global-transition: 0.5s ease;
+
+  /*------------------*/
+  /* #Z INDEX */
+  /* https://en.wikipedia.org/wiki/Forest */
+  /*------------------*/
+
+  --emergent: 4;
+  --canopy: 3;
+  --understory: 2;
+  --floor: 1;
+}

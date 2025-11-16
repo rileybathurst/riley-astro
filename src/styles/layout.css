@@ -1,0 +1,1081 @@
+/*------------------------------------*/
+/* #LAYOUT */
+/*------------------------------------*/
+
+body {
+  min-height: 100vh;
+  /* ? color and small size */
+  border: var(--weebill) solid;
+
+  @media (min-width: 40rem) {
+    border-width: var(--kosciuszko);
+  }
+
+  @media (min-width: 60rem) {
+    border-width: var(--vinson);
+  }
+}
+
+main {
+  max-width: var(--stork);
+  margin-inline: auto;
+  margin-block: var(--everest);
+}
+
+/*------------------------------------*/
+
+.spine-border {
+  width: var(--vinson);
+  grid-row: 1/3;
+  grid-column: 1;
+  /* over the top of categories on single */
+  z-index: var(--understory);
+  justify-self: end;
+
+  @media (min-width: 40rem) {
+    justify-self: start; /* categories takes up that space as well */
+  }
+}
+
+/* even tho these are the same the names help keep them seperate */
+.single .spine-border,
+.category .spine-border {
+  /* image : header : date : content */
+  grid-row: 1/5;
+  grid-column: 1;
+  /* I think this is a browser default */
+  justify-self: start;
+
+  @media (min-width: 40rem) {
+    grid-row: 1/4; /* what are the 6: header : date : content */
+    justify-self: start; /* categories takes up that space as well */
+  }
+}
+
+.passage {
+  max-width: var(--pelican);
+  margin-inline: auto;
+  padding-inline: var(--kosciuszko);
+}
+
+.progression {
+  display: flex;
+  column-gap: var(--kosciuszko);
+  max-width: var(--pelican);
+  flex-flow: row wrap;
+
+  > * {
+    flex: 1 1 calc(var(--vulture) - var(--denali));
+  }
+}
+
+/*------------------------------------*/
+/* #HEADER */
+/*------------------------------------*/
+
+.header-logo {
+  grid-row: 1;
+  grid-column: 3;
+  /* macth the spine */
+  justify-self: center;
+
+  @media (min-width: 40rem) {
+    align-self: end; /* this is for when the menu is horizontal on single pages */
+    grid-column: 5; /* category */
+  }
+}
+
+.home .header-logo {
+  justify-self: center;
+  align-self: start;
+
+  @media (min-width: 40rem) {
+    grid-column: 5;
+  }
+}
+
+.single .header-logo {
+  grid-column: 3;
+}
+
+.home .header-logo svg {
+  transition: var(--global-transition);
+}
+.home .header-logo svg:hover {
+  background: var(--kingly-cloud);
+}
+
+.color-blocking {
+  mix-blend-mode: multiply;
+  background: var(--cherry-100);
+  /* same as .spine border? should it be above or below */
+  z-index: var(--floor);
+}
+
+.header-color-blocking {
+  /* TODO: @extend was sass @extend .color-blocking; */
+  grid-row: 2;
+  grid-column: 2;
+  @media (min-width: 40rem) {
+    grid-row: 1 / 4;
+    grid-column: 3;
+  }
+}
+
+.single-header-top-line {
+  grid-row: 1;
+  grid-column: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: 40rem) {
+    flex-direction: row;
+
+    h1 {
+      margin-bottom: 0; /* help these align */
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+  Site Branding Text
+--------------------------------------------------------------*/
+
+.site-branding-text {
+  grid-row: 2;
+  grid-column: 2;
+  z-index: 20; /* TODO: */
+
+  @media (min-width: 40rem) {
+    writing-mode: vertical-rl;
+    grid-row: 1/4;
+    grid-column: 3;
+    place-self: center;
+  }
+}
+
+.single .site-branding-text {
+  background: initial;
+  mix-blend-mode: initial;
+  grid-row: 1;
+  /* fix problems caused by the home page */
+  place-self: start;
+  padding-bottom: 0;
+
+  /* 🦜 not a bird */
+  @media (min-width: 40rem) {
+    writing-mode: horizontal-tb;
+    padding: 0;
+    grid-column: 2;
+    margin-block: 0;
+  }
+}
+
+.home .site-branding-text {
+  @media (min-width: 40rem) {
+    grid-row: 1 / 3;
+    margin-block: var(--everest) var(--vinson);
+  }
+}
+
+.spine {
+  grid-column: 3;
+  grid-row: 2/4;
+  writing-mode: vertical-rl;
+  /* match header-logo */
+  justify-self: center;
+
+  @media (min-width: 40rem) {
+    grid-row: 2;
+    grid-column: 5;
+  }
+}
+
+.single .spine {
+  grid-row: 1/3;
+  align-self: end;
+
+  @media (min-width: 40rem) {
+    grid-column: 3;
+  }
+}
+
+.custom-header-media,
+.custom-header-photo,
+.custom-header-featured-video {
+  z-index: 10;
+  grid-row: 1 / 3;
+  grid-column: 2;
+
+  @media (min-width: 40rem) {
+    grid-row: 2;
+    grid-column: 2 / 4;
+  }
+
+  img,
+  picture {
+    /* small images still fill the box */
+    width: 100%;
+  }
+}
+
+.custom-header-featured-video {
+  /* https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
+  position: relative;
+  /* 16:9 */
+  padding-bottom: 56.25%;
+  height: 0;
+
+  @media (min-width: 40rem) {
+    grid-column: 2 / 4;
+  }
+}
+
+.custom-header-featured-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.single #top-menu {
+  margin: 0;
+  @media (min-width: 40rem) {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+/*------------------------------------*\
+  # NAVIGATON TOP
+\*------------------------------------*/
+
+.navigation-top {
+  grid-column: 2;
+  grid-row: 3;
+
+  @media (min-width: 40rem) {
+    grid-column: 4;
+    grid-row: 2 / 4;
+  }
+}
+
+.single .navigation-top {
+  grid-row: 3;
+}
+
+/*--------------------------------------------------------------
+/* 3.0 Main */
+/* --------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+3.1 Category
+--------------------------------------------------------------*/
+
+.category-header {
+  /* inside the margins */
+  /* TODO: 🦜 not a bird */
+  max-width: 77rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--denali) 1fr 1fr 1fr var(--denali);
+  grid-gap: var(--vinson);
+}
+
+.cat-head {
+  grid-column: 2 / 5;
+  padding-bottom: var(--denali);
+
+  @media (min-width: 40rem) {
+    grid-column: 3;
+  }
+}
+
+.category-thumbnail {
+  grid-column: 2 / 5;
+  grid-row: 1 / 2;
+
+  @media (min-width: 40rem) {
+    grid-row: 1;
+  }
+}
+
+.category-sub {
+  width: 100%;
+  /* always stay inside the widest columns on the category pages */
+  max-width: var (--denali);
+  margin: 0 auto;
+  margin-bottom: var(--vinson);
+}
+
+.category-sub ul {
+  padding-left: 0;
+
+  li {
+    list-style: none;
+    text-align: center;
+  }
+}
+
+.category-break {
+  margin-bottom: var(--everest);
+}
+
+/*--------------------------------------------------------------
+3.4 Article
+--------------------------------------------------------------*/
+.site-main article {
+  /* running wordpress post class prevents using a straight class */
+  /* this can now be named */
+
+  max-width: var(--albatross);
+  margin: 0 auto;
+  display: grid;
+  grid-gap: var(--vinson);
+  padding: var(--denali) 0;
+  /* the spine needs to get to the base of the area */
+  padding-bottom: 0;
+  grid-template-columns: var(--denali) 1fr var(--denali);
+
+  @media (min-width: 40rem) {
+    width: calc(100% - var(--denali));
+    grid-template-columns: var(--denali) 1fr 1fr 1fr var(--denali);
+  }
+}
+
+.article-thumbnail {
+  grid-row: 1;
+  grid-column: 1/4;
+
+  @media (min-width: 40rem) {
+    grid-column: 2 / 5;
+  }
+}
+
+.article-thumbnail a,
+.category-thumbnail a {
+  width: 100%;
+  display: block;
+}
+
+.article-thumbnail > a > img,
+.category-thumbnail > a > img,
+.article-thumbnail > a > picture,
+.category-thumbnail > a > picture {
+  width: 100%;
+}
+
+.article-thumbnail img {
+  /* specifically needed for the front page */
+  display: inline-block;
+  width: 100%;
+}
+
+.featured-header {
+  /* TODO: this is weird */
+  max-width: calc(77 - 6rem);
+  margin: var(--vinson) auto;
+  padding-top: var(--vinson);
+}
+
+.article-header {
+  width: 100%;
+  grid-column: 2;
+  grid-row: 2;
+
+  @media (min-width: 40rem) {
+    grid-column: 2 / 6;
+    grid-row: 2; /* this is a repeat of above */
+  }
+}
+
+.article-speechbubble {
+  grid-column: 2;
+
+  @media (min-width: 40rem) {
+    grid-row: 1;
+    grid-column: 5;
+    align-self: start;
+    justify-self: center;
+  }
+}
+
+.article-speechbubble > .speeechbubble {
+  margin-bottom: var(--vinson);
+}
+
+.article-content {
+  grid-column: 2;
+
+  @media (min-width: 40rem) {
+    grid-column: 2/5;
+  }
+}
+
+.article-content-specific img {
+  width: 100%;
+}
+
+.article-content-specific hr {
+  @media (min-width: 40rem) {
+    margin-inline: var(--everest);
+  }
+}
+
+.article-category {
+  grid-column: 2;
+  font-weight: bold;
+
+  p {
+    display: inline-block;
+  }
+
+  ul {
+    padding-left: var(--vinson);
+    display: inline;
+  }
+
+  li {
+    list-style: none;
+    margin-right: var(--vinson);
+    display: inline;
+  }
+}
+
+.single .article-category {
+  @media (min-width: 40rem) {
+    grid-row: 1 / 4; /* header : date : content */
+    align-self: start;
+    grid-column: 1;
+  }
+
+  h3 {
+    margin: 0;
+    grid-column: 1;
+  }
+}
+
+.article-base {
+  max-width: var(--albatross);
+  /* rewrite this as a single */
+  margin-top: var(--everest);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  /* 
+TODO: media variables are sass
+  @media (min-width: 40rem) {
+    display: grid;
+    grid-template-columns: var(--denali) 1fr 1fr 1fr var(--denali);
+    grid-gap: var(--vinson);
+  } */
+}
+
+.base-explore {
+  @media (min-width: 40rem) {
+    grid-column: 1;
+    writing-mode: vertical-rl;
+  }
+}
+
+.base-tags {
+  grid-column: 1;
+  grid-row: 3;
+  writing-mode: vertical-rl;
+
+  @media (min-width: 40rem) {
+    grid-column: 5;
+    grid-row: 1;
+  }
+}
+
+.article-category .subheading {
+  @media (min-width: 40rem) {
+    margin-bottom: 0;
+  }
+}
+
+.article-category h3 ul,
+.featured-category h3 ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding: 0;
+}
+
+.article-explore {
+  grid-column: 2;
+  margin-bottom: var(--vinson);
+
+  @media (min-width: 40rem) {
+    grid-column: 2/5;
+  }
+
+  a {
+    background: var(--cherry-100);
+    padding: var(--vinson);
+    display: inline-block;
+    color: var(--brilliance);
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background: var(--cherry-300);
+    /* otherwise this gets overwritten to the default a */
+    color: var(--brilliance);
+  }
+
+  /* I dont like the hover here but need to do actual work on it */
+}
+
+/* can the next few items be written nicer? */
+.post-navigation {
+  grid-column: 2 / 5;
+  @media (min-width: 40rem) {
+    grid-column: 2;
+  }
+}
+
+.article-comments {
+  grid-column: 2 / 5;
+
+  padding: var(--vinson);
+  /* TODO: @extend was sass */
+  /* @extend .background-dirty; */
+
+  @media (min-width: 40rem) {
+    grid-column: 3;
+  }
+}
+
+.article-tags {
+  grid-column: 2 / 5;
+  @media (min-width: 40rem) {
+    grid-column: 4;
+  }
+
+  h3 {
+    @media (min-width: 40rem) {
+      writing-mode: vertical-rl;
+    }
+  }
+}
+
+.fp-header {
+  /* front page header but I think this should be renamed to an atom */
+  grid-row: 1;
+  grid-column: 2;
+  /* document why this is here */
+  z-index: 20;
+  align-self: end;
+
+  @media (min-width: 40rem) {
+    grid-column: 2 / 5;
+  }
+}
+
+.category-post--header {
+  /* very similar to the .fp-header but a new more useful name and the padding without the image background */
+  grid-row: 1;
+  grid-column: 2;
+
+  /* 
+  TODO: media variables are sass
+  @media (min-width: 40rem) {
+    grid-column: 2 / 5;
+  } */
+}
+
+/*--------------------------------------------------------------
+2.7 Featured Category
+--------------------------------------------------------------*/
+
+.featured-thumbnail {
+  grid-column: 2 / 6;
+  grid-row: 1;
+  mix-blend-mode: multiply;
+  filter: grayscale(100%);
+}
+
+.featured-header {
+  grid-column: 3 / 5;
+  align-self: center;
+  grid-row: 1;
+}
+
+.featured-category {
+  grid-column: 3 / 5;
+}
+
+.featured--excerpt {
+  grid-column: 2;
+
+  @media (min-width: 40rem) {
+    grid-column: 2/5;
+  }
+}
+
+/*--------------------------------------------------------------
+3.6 Pagination
+--------------------------------------------------------------*/
+
+.pagination {
+  margin: var(--everest) auto;
+  max-width: var(--albatross);
+  display: grid;
+  grid-gap: var(--vinson);
+  /* TODO: fix */
+  grid-template-columns: var(--denali) 1fr 4fr 1fr var(--denali);
+}
+
+.pagination h2 {
+  /* as wordpress controls this we are using elements for the grid */
+  grid-column: 1 / 3;
+
+  /*
+TODO: media variables are sass
+@media (min-width: $pelican) {
+    grid-column: 3 / span 4;
+  } */
+}
+
+.pagination .nav-links {
+  grid-column: 2 / 5;
+
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  /* is there a place-items for flex? */
+  align-items: flex-start;
+
+  /*
+TODO: media variables are sass
+@media (min-width: $pelican) {
+    grid-column: 3;
+  } */
+}
+
+.pagination .nav-links .next,
+.pagination .nav-links .prev {
+  /* what is this overwritting? */
+  width: auto;
+  writing-mode: vertical-rl;
+  border-bottom: none;
+  box-shadow: none;
+}
+
+.pagination span,
+.pagination a {
+  margin-right: var(--vinson);
+}
+
+/*--------------------------------------------------------------
+3.7 Single
+--------------------------------------------------------------*/
+
+/* front page and category does some things */
+.single .custom-header-media,
+.single .custom-header-photo,
+.single .custom-header-featured-video {
+  grid-row: 2;
+  align-self: end;
+
+  @media (min-width: 40rem) {
+    grid-column: 2;
+  }
+}
+
+.single .article-header,
+.page .article-header,
+.cat-404 .article-header {
+  /* re-organize with the featured image in the header */
+  grid-row: 1;
+}
+
+.single .article-category h3,
+.single .article-category .post-categories {
+  /* these are vertical text hence not having a margin below */
+  margin: 0;
+}
+
+.post-categories > li {
+  @media (min-width: 40rem) {
+    margin-bottom: 0; /* vertical text doesnt need a margin below */
+  }
+}
+
+.comment-reply-title {
+  /* Im sure this is in comments but it needs documentation */
+  display: none;
+}
+
+.post-navigation {
+  @media (min-width: 40rem) {
+    grid-column: 2;
+  }
+}
+
+.specific-grid {
+  display: flex;
+  flex-direction: column;
+  /* 
+
+TODO: media variables are sass
+  @media (min-width: 40rem) {
+    display: grid;
+    grid-template-columns: var(--denali) 1fr 1fr 1fr var(--denali);
+    grid-gap: var(--vinson);
+  } */
+
+  h3 {
+    @media (min-width: 40rem) {
+      grid-column: 2/5;
+    }
+  }
+}
+
+.subtitle {
+  @media (min-width: 40rem) {
+    grid-column: 1;
+    grid-row: 1;
+    writing-mode: vertical-rl;
+    text-decoration: line-through;
+    margin: 0; /* vertical text doesnt have regular margins */
+  }
+}
+
+.specific-grid__main-width {
+  grid-column: 2/5;
+}
+
+.continental {
+  @media (min-width: 40rem) {
+    grid-column: 2/5;
+  }
+}
+
+.continental-2 {
+  grid-column: 2;
+}
+
+.continental-3 {
+  grid-column: 3;
+}
+
+.continental-4 {
+  grid-column: 4;
+}
+
+.west-medium {
+  @media (min-width: 40rem) {
+    grid-column: 2;
+  }
+}
+
+.east-medium {
+  @media (min-width: 40rem) {
+    grid-column: 3;
+  }
+}
+
+.west-large {
+  /*
+TODO: media variables are sass
+@media (min-width: $pelican) {
+    grid-column: 2;
+  } */
+}
+
+.east-large {
+  /*
+TODO: media variables are sass
+@media (min-width: $pelican) {
+    grid-column: 3;
+  } */
+}
+
+.gr-1-m {
+  /* this is really different from other classes? */
+  @media (min-width: 40rem) {
+    grid-row: 1;
+  }
+}
+
+/*--------------------------------------------------------------
+4.0 Footer
+--------------------------------------------------------------*/
+
+.site-footer {
+  width: 100%;
+  margin: 0 auto var(--denali) auto;
+  padding-bottom: var(--vinson);
+}
+
+.site-footer--browse {
+  max-width: var(--condor);
+  margin: 0 auto;
+}
+
+.footer-background__step {
+  /* this allows the grid gap to sit inside as a ruler and not break the edges */
+  padding: var(--vinson);
+}
+
+.footer_menu {
+  display: grid;
+  /* start simple stack then go to direction. maybe this should be a flex */
+  grid-template-columns: 1fr;
+  /* TODO: columns and rows */
+  grid-gap: var(--vinson);
+  padding-top: var(--vinson);
+  padding-left: 0;
+  max-width: var(--albatross);
+}
+
+.footer_info {
+  display: grid;
+  /* TODO: minmax stack for small */
+  grid-template-columns: repeat(3, 1fr);
+  /* TODO: columns and rows */
+  grid-gap: var(--vinson);
+  max-width: var(--albatross);
+  margin-inline: auto;
+  padding-inline: var(--vinson);
+
+  address {
+    grid-column: 3;
+  }
+}
+
+.footer_menu li {
+  list-style: none;
+}
+
+.footer_nav a {
+  padding: 0;
+}
+
+.footer_nav ul {
+  margin: 0;
+  /* browser reset */
+  padding: 0;
+}
+
+.footer_nav li {
+  display: inline-block;
+}
+
+.footer_contact {
+  @media (min-width: 40rem) {
+    grid-column: 4;
+    text-align: right;
+  }
+
+  p {
+    margin-block-end: var(--vinson);
+  }
+}
+
+.footer_1,
+.footer_5 {
+  /* Im not super happy with the far edges being white but its getting closer to right */
+
+  display: none;
+
+  @media (min-width: 40rem) {
+    display: initial;
+    grid-row: 1;
+  }
+}
+
+.footer_1 {
+  @media (min-width: 40rem) {
+    grid-row: 1;
+    grid-column: 1/3; /* hide a grid-gap that is otherwise white */
+  }
+}
+
+.footer_5 {
+  @media (min-width: 40rem) {
+    grid-row: 1;
+    grid-column: 4/6; /* hide a grid-gap that is otherwise white */
+  }
+}
+
+/*------------------------------------*\
+  # RESPONSIVE IFRAME
+  https://css-tricks.com/responsive-iframes/
+\*------------------------------------*/
+
+[style*="--aspect-ratio"] > :first-child {
+  width: 100%;
+}
+[style*="--aspect-ratio"] > img {
+  height: auto;
+}
+@supports (--custom: property) {
+  [style*="--aspect-ratio"] {
+    position: relative;
+  }
+  [style*="--aspect-ratio"]::before {
+    content: "";
+    display: block;
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+  [style*="--aspect-ratio"] > :first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+}
+
+.continental-gallery {
+  display: flex;
+  flex-wrap: wrap;
+
+  section {
+    /* guess and check number to fit 3 */
+    flex: 1 1 29%;
+    padding: var(--vinson);
+  }
+}
+
+.specific-full-picture img {
+  background: var(--brilliance);
+  padding: var(--vinson);
+  width: calc(100% - var(--denali));
+}
+
+.specific-overlaying__image-grid {
+  display: grid;
+
+  picture,
+  .overlaying-image {
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+
+.base-next__grid {
+  display: grid;
+
+  a, /* the image */
+  h4, /* the title */
+  .color-blocking {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  h4 {
+    place-self: center;
+  }
+
+  h4 a {
+    color: var(--brilliance);
+    z-index: 16;
+    position: relative;
+  }
+}
+
+/* TODO: Name */
+/*------------------*/
+/* #HEADER__CONCEPT */
+/*------------------*/
+
+.header__concept {
+  display: grid;
+  grid-template-columns: var(--denali) 1fr var(--denali);
+  place-items: center;
+  /* color: var(--cherry-100); */
+  font-weight: 700;
+
+  > * {
+    grid-row: 1;
+  }
+
+  .breadcrumbs {
+    grid-column: 1;
+    writing-mode: vertical-rl;
+  }
+
+  .riley {
+    grid-column: 2;
+    z-index: 11;
+    mix-blend-mode: multiply;
+  }
+
+  .bathurst {
+    grid-column: 2;
+    z-index: 10;
+    color: transparent;
+    mix-blend-mode: multiply;
+  }
+
+  .spine {
+    grid-column: 3;
+    writing-mode: vertical-rl;
+  }
+
+  svg {
+    width: 33%;
+    height: 33%;
+    grid-column: 2;
+  }
+
+  .white {
+    fill: white;
+    filter: blur(var(--woodstar));
+  }
+
+  /* TODO: rename this */
+  .cherry {
+    fill: transparent;
+    stroke: var(--cherry-100);
+    stroke-width: var(--woodstar);
+    filter: blur(var(--kosciuszko));
+    padding-inline-start: var(--woodstar);
+    padding-block-start: var(--woodstar);
+  }
+
+  .headshot {
+    grid-column: 2;
+    grid-row: 1;
+    aspect-ratio: 16/9;
+  }
+}
+
+.social-icons {
+  max-width: var(--albatross);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+}
+
+.social-icons > .fp-box > a {
+  display: inline-block;
+}
+
+.social-icons svg {
+  width: var(--denali);
+  padding-top: var(--vinson);
+  padding-bottom: var(--vinson);
+
+  @media (min-width: 40rem) {
+    /* red text on brackets isnt a good sign does it need a prefix */
+    width: 3em;
+  }
+}
+
+.social-icons svg {
+  fill: var(--brilliance);
+}
+
+.social-icons svg:hover {
+  fill: var(--kingly-cloud);
+}

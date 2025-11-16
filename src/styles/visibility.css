@@ -1,0 +1,18 @@
+.show-for-stork {
+  display: none;
+
+  @media (min-width: 40rem) {
+    display: inherit;
+  }
+}
+
+.hide-for-stork {
+  @media (min-width: 40rem) {
+    display: none;
+  }
+}
+.hide-for-pelican {
+  @media (min-width: 60rem) {
+    display: none;
+  }
+}

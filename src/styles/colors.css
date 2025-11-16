@@ -1,0 +1,167 @@
+/*------------------------------------*/
+/* #COLORS */
+/*------------------------------------*/
+
+.body, /* storybook */
+body {
+  border-color: var(--brilliance);
+  margin: 0;
+
+  @media (prefers-color-scheme: dark) {
+    background: var(--black-metal);
+    color: var(--brilliance);
+    border-color: var(--black-metal);
+  }
+}
+
+/*------------------------------------*/
+/* #BACKGROUNDS */
+/*------------------------------------*/
+
+/* change the name */
+.background-primary {
+  background: var(--cherry-100);
+}
+
+.background-clean {
+  background: var(--brilliance);
+  @media (prefers-color-scheme: dark) {
+    background: var(--black-metal);
+  }
+}
+
+.background-dirty {
+  background: var(--kingly-cloud);
+
+  @media (prefers-color-scheme: dark) {
+    background: var(--black-out);
+  }
+}
+
+.background-brilliance {
+  background: var(--brilliance);
+}
+
+/*------------------------------------*/
+/* #TYPE COLORS */
+/*------------------------------------*/
+
+.site-title {
+  color: var(--brilliance);
+}
+
+.breacdcrumbs {
+  color: gray;
+}
+
+/*------------------------------------*/
+/* #HEADER */
+/*------------------------------------*/
+
+.header-logo {
+  fill: var(--cherry-100);
+}
+
+.header-logo:hover {
+  fill: var(cherry-300);
+}
+
+.subheader {
+  font-size: var(--denali);
+  color: gray;
+  margin: 2px 0;
+}
+
+.site-branding-text {
+  writing-mode: vertical-rl;
+  justify-self: center;
+  /* adding this incase we dont have images the text is still visible */
+  /* true black not var(--black-metal) for the screen blend to not show anything */
+  background: var(--black-metal);
+
+  a {
+    color: var(--brilliance);
+    padding: var(--vinson);
+    /* am I sure this is neccessary */
+    display: inline-block;
+  }
+}
+
+.single .site-branding-text {
+  /* no longer over the image */
+  writing-mode: initial;
+
+  a {
+    padding: initial;
+    color: var(--black-metal);
+    /* I have the hero underneath which is kinda taking care of this */
+    text-decoration: none;
+    @media (prefers-color-scheme: dark) {
+      color: var(--brilliance);
+    }
+  }
+}
+
+.spine-border {
+  background: var(--cherry-100);
+}
+
+/*------------------------------------*/
+/* #STORYBOOK */
+/*------------------------------------*/
+
+.colors {
+  .palette {
+    display: flex;
+
+    .color {
+      min-width: 5rem;
+      min-height: 5rem;
+      padding: var(--kosciuszko);
+    }
+  }
+
+  /* restart */
+  .cherry {
+    background-color: var(--cherry-100);
+  }
+
+  /* neutrals */
+  .black-metal {
+    background-color: var(--black-metal);
+  }
+
+  .black-out {
+    background-color: var(--black-out);
+  }
+
+  .raven-black {
+    background-color: var(--raven-black);
+  }
+
+  .industrial-revolution {
+    background-color: var(--industrial-revolution);
+  }
+
+  .grey {
+    background-color: grey;
+  }
+
+  .cold-grey {
+    background-color: var(--cold-grey);
+  }
+
+  .tin-soldier {
+    background-color: var(--tin-soldier);
+  }
+
+  .kingly-cloud {
+    background-color: var(--kingly-cloud);
+  }
+
+  .brilliance {
+    background-color: var(--brilliance);
+  }
+}
+
+/*------------------------------------*/

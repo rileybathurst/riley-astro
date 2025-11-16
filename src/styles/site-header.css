@@ -1,0 +1,84 @@
+/*------------------------------------*/
+/* #SITE-HEADER */
+/*------------------------------------*/
+
+.site-header {
+  width: 100%;
+  max-width: var(--albatross);
+  margin: 0 auto var(--denali) auto;
+  display: grid;
+  grid-template-columns: var(--denali) 1fr var(--denali);
+  grid-gap: var(--vinson);
+
+  @media (min-width: 40rem) {
+    grid-template-rows: var(--denali) 1fr var(--denali); /* keep it tight up top with the header-logo */
+    grid-template-columns: var(--denali) 1fr 1fr 1fr var(--denali);
+  }
+}
+
+.single-site-header {
+  margin-right: var(--vinson);
+  grid-template-columns: 1em 1fr;
+}
+
+.single .site-header {
+  @media (min-width: 40rem) {
+    grid-template-rows: initial;
+    grid-template-columns: var(--denali) 1fr;
+  }
+}
+
+.single-site-header {
+  grid-template-rows: none !important;
+}
+
+.breadcrumbs {
+  grid-column: 1;
+  grid-row: 2 / 4;
+  writing-mode: vertical-rl;
+  justify-self: center;
+}
+
+.single .breadcrumbs {
+  grid-row: 3;
+
+  @media (min-width: 40rem) {
+    grid-row: 3/5;
+  }
+}
+
+.site-header-hero-hr {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.site-header .site-branding-text {
+  /* needs to be only on the site header so it is always above an image */
+  mix-blend-mode: screen;
+}
+
+.single .site-header .site-branding-text {
+  /* this is a ridiculous selector but its needed as a reset */
+  mix-blend-mode: initial;
+}
+
+/* these are a couple little design blocks */
+.single-site-header-color-block_1 {
+  grid-row: 1;
+  grid-column: 1;
+  background: var(--cherry-100);
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  /* guess and check to line up with the top of the Text */
+  margin-top: var(--vinson);
+}
+
+.single-site-header-color-block_2 {
+  grid-row: 2;
+  grid-column: 1;
+  background: var(--cherry-100);
+  width: 100%;
+  height: 4px;
+  margin: 0;
+}

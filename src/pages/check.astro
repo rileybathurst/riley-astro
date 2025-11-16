@@ -1,0 +1,28 @@
+---
+import Layout from "../components/layout.astro";
+import fetchApi from "../lib/strapi";
+
+type checkTypes = {
+    name: string;
+    slug: string;
+};
+const checks: checkTypes[] = await fetchApi({
+    endpoint: "checks", // the content type to fetch
+    // more: false,
+});
+---
+
+<Layout>
+    <main>
+        <h1>Checks</h1>
+        <hr />
+        {checks.map((check) => (
+            <article>
+                <a href={check.slug}>
+                    {check.name}
+                </a>
+            </article>
+        ))}
+        <hr />
+    </main>
+</Layout>

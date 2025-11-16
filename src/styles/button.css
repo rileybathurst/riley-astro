@@ -1,0 +1,33 @@
+/*------------------------------------*/
+/* #BUTTON */
+/*------------------------------------*/
+
+a.button {
+  text-decoration: none;
+}
+
+button,
+.button {
+  margin-bottom: var(--vinson);
+  background: var(--cherry-100);
+  border: none;
+  color: var(--brilliance);
+  font-weight: bold;
+  /* TODO: type scale */
+  font-size: 1.5em;
+  transition: var(--global-transition);
+  display: inline-block;
+
+  /* browser reset */
+  -webkit-appearance: none;
+
+  /* TODO: 🦜 not a bird */
+  @media (min-width: 40rem) {
+    font-size: var(--denali);
+  }
+}
+
+button:hover,
+.button:hover {
+  background: var(--cherry-300);
+}

@@ -74,8 +74,8 @@ export default async function fetchApi<T>({
 
 	// if (wrappedByKey) { // I think everything is wrapped by data?
 	const data = pageData.data || pageData;
-	console.log('Strapi API response data:');
-	console.log(data);
+	// console.log('Strapi API response data:');
+	// console.log(data);
 
 /* 	while (more) {
 		url.searchParams.set("pagination[page]", page.toString());

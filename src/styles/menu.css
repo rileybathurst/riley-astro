@@ -1,0 +1,130 @@
+/*------------------------------------*/
+/* #MENU */
+/* Additional Fancy mani menu sliders */
+/* https://codepen.io/rm/pen/ldhon */
+/*------------------------------------*/
+
+/*
+  which pages have a vertical menu stack
+  front page
+  Category
+  page
+*/
+
+.menu,
+.menu > ul,
+.menu > ul > li {
+  list-style-type: none;
+}
+
+/*------------------------------------*/
+
+.home #top-menu,
+.category #top-menu,
+.page #top-menu {
+  /* * pulling the hr up means we need to specify this */
+  min-height: 9rem;
+
+  @media (min-width: 40rem) {
+    min-height: 10rem;
+  }
+
+  a {
+    width: 100%;
+    display: block;
+  }
+
+  a:hover {
+    text-decoration: none;
+    display: block;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  li:first-child:hover ~ hr {
+    /* weird backwards math */
+    margin-top: -6rem;
+    opacity: 1;
+
+    @media (min-width: 40rem) {
+      margin-top: -8rem;
+    }
+  }
+
+  li:nth-child(2):hover ~ hr {
+    margin-top: -var(--everest);
+    opacity: 1;
+
+    @media (min-width: 40rem) {
+      margin-top: -4rem;
+    }
+  }
+
+  li:nth-child(3):hover ~ hr {
+    margin-top: 0;
+    opacity: 1;
+  }
+
+  hr {
+    /* lets me remove width and defaults to 100% which absolute does not */
+    position: sticky;
+    background: var(--cherry-300);
+    border: none;
+    transition: 0.3s ease-in-out;
+    /* slide behind and dont get in the way of the hover */
+    z-index: -1;
+    /* start at the top makes more sense as thats where people come from // this also causes the shape of the resting ul to be tiny */
+    margin-top: -9rem;
+    opacity: 0;
+    height: var(--kosciuszko);
+
+    /* @media (min-width: 40rem) {
+      // width: 22%; // guess and check
+      // max-width: 2var(--denali); // guess and check
+      height: var(--vinson);
+      margin-top: -10rem; // start at the top makes more sense as thats where people come from
+    } */
+  }
+}
+
+.single #top-menu {
+  display: inline;
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  li:first-child:hover ~ hr {
+    margin-left: 0;
+    opacity: 1;
+  }
+
+  li:nth-child(2):hover ~ hr {
+    opacity: 1;
+  }
+
+  li:nth-child(3):hover ~ hr {
+    opacity: 1;
+  }
+
+  hr {
+    height: var(--vinson);
+    margin: 0;
+    /* sit in the grid gap */
+    margin-bottom: -var(--vinson);
+    opacity: 0;
+    background: var(--cherry-300);
+    border: none;
+    transition: 0.3s ease-in-out;
+  }
+}
+
+.menu li:not(:last-child) {
+  margin-right: var(--vinson);
+}

@@ -1,9 +1,9 @@
 ---
 import fetchApi from "../lib/strapi";
-import type { MetaType } from "../types/about-type";
+import type { AboutType } from "../types/about-type";
 
-const meta: MetaType[] = await fetchApi({
-    endpoint: "meta", // the content type to fetch
+const about: AboutType = await fetchApi({
+    endpoint: "about", // the content type to fetch
     wrappedByKey: "data", // the key to unwrap the response
     more: false,
 });
@@ -13,6 +13,6 @@ const meta: MetaType[] = await fetchApi({
 <header class="header__concept">
     <div class="breadcrumbs">HOME</div>
     <div class="spine">PUSHING PIXELS</div>
-    <h1 class="riley">{meta[0].name.split(' ')[0]}</h1>
-    <h2 class="bathurst">{meta[0].name.split(' ')[1]}</h2>
+    <h1 class="riley">{about.name.split(' ')[0]}</h1>
+    <h2 class="bathurst">{about.name.split(' ')[1]}</h2>
 </header>

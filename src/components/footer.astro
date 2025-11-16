@@ -2,7 +2,7 @@
 import fetchApi from '../lib/strapi';
 import type { AboutType } from '../types/about-type';
 
-const about: AboutType[] = await fetchApi({
+const about: AboutType = await fetchApi({
   endpoint: 'about', // the content type to fetch
   wrappedByKey: 'data', // the key to unwrap the response
   more: false,
@@ -31,10 +31,10 @@ const about: AboutType[] = await fetchApi({
       <ul>
         {/* // TODO need to build search */}
         {/* <li key="search"><Link to='/search'>Search</Link></li> */}
-        <li><a href="/projects">Projects</a></li>
+        <li><a href="/project">Projects</a></li>
         <li><a href="/blog">Blog</a></li>
         <li>
-          <a href="/styleguides">Styleguides</a>
+          <a href="/styleguide">Styleguides</a>
         </li>
         {
           /* I can do something more interesting with this as a show whats available maybe an accordian or work in with what I already have */

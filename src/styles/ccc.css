@@ -1,0 +1,44 @@
+/*--------------------------------------------------------------
+/* CLICKS CODE CAMERA */
+/* --------------------------------------------------------------*/
+
+.ghost-titles {
+  max-width: var(--albatross);
+  margin-inline: auto;
+
+  /* I am using this for the grid gap it could probably be done better */
+  display: grid;
+  grid-template-columns: var(--denali) repeat(6, 1fr) var(--denali);
+  gap: var(--kosciuszko);
+
+  background: var(--brilliance);
+  @media (prefers-color-scheme: dark) {
+    background: var(--black-metal);
+  }
+
+  div {
+    background: var(--cherry-100);
+    color: white;
+
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover */
+    @media (hover: hover) {
+      span {
+        transition: 20s ease;
+        opacity: 0.2;
+        display: grid;
+        place-items: center;
+        padding-block: var(--kosciuszko);
+      }
+
+      span:hover {
+        transition: var(--global-transition);
+        opacity: 1;
+      }
+    }
+  }
+
+  .presence {
+    /* why do I need important? */
+    opacity: 1 !important;
+  }
+}

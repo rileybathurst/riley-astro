@@ -1,0 +1,189 @@
+/*------------------------------------*/
+/* #MEDIA */
+/*------------------------------------*/
+
+img,
+video,
+figure {
+  height: auto;
+  max-width: 100%;
+}
+
+figure {
+  margin: 0;
+}
+
+svg {
+  width: var(--denali);
+  height: var(--denali);
+  fill: currentColor;
+}
+
+/* Styles based on Normalize v5.0.0 @link https://github.com/necolas/normalize.css */
+svg:not(:root) {
+  /* thats a pretty strange selector is it right? */
+  overflow: hidden;
+}
+
+iframe {
+  /* just a little fallback color incase an embed doesnt load */
+  background: linen; /* TODO: variable */
+}
+
+/*------------------------------------*/
+
+.img-100,
+.img-100 img {
+  width: 100%;
+}
+
+/*------------------------------------*/
+
+.icon {
+  display: inline-block;
+  fill: currentColor;
+  height: 1em;
+  /* what was it before? */
+  position: relative; /* Align more nicely with capital letters */
+  top: -0.0625em;
+  /* doesnt this negate what comes before? */
+  vertical-align: middle;
+  width: 1em;
+}
+
+/*------------------------------------*/
+
+.overlaying-image {
+  filter: grayscale(100%);
+  mix-blend-mode: multiply;
+  @media (prefers-color-scheme: dark) {
+    mix-blend-mode: screen;
+  }
+  /* why this number? */
+  z-index: var(--floor);
+}
+
+.category-overlaying-image {
+  filter: grayscale(100%);
+  mix-blend-mode: multiply;
+  @media (prefers-color-scheme: dark) {
+    mix-blend-mode: screen;
+  }
+  z-index: 14; /* TODO: */
+  grid-row: 1;
+  grid-column: 1/4;
+}
+
+.custom-header-media img,
+.custom-header-media picture {
+  width: 100%;
+}
+
+/*------------------------------------*/
+/* #CAPTION */
+/*------------------------------------*/
+
+figcaption,
+.caption {
+  color: gray;
+  font-size: var(--kilimanjaro);
+  font-weight: bold;
+}
+
+/*------------------------------------*/
+
+.category-thumbnail img:hover {
+  /* TODO: Variable
+  so its an indication of a link */
+  opacity: 0.8;
+}
+
+.category-color-blocking {
+  background: var(--cherry-100);
+  mix-blend-mode: multiply;
+  z-index: 15;
+  grid-row: 1;
+  grid-column: 1/4;
+  transition: 300ms ease;
+
+  @media (min-width: 40rem) {
+    grid-column: 2/5;
+  }
+}
+
+.category-color-blocking:hover {
+  background: var(--cherry-300);
+}
+
+body.category-code {
+  /* needs to be on the body tag or a single article can be different to the page */
+
+  .category-overlaying-image {
+    filter: none;
+    mix-blend-mode: initial;
+  }
+
+  .category-color-blocking {
+    display: none;
+  }
+
+  .category-color-blocking:hover {
+    display: initial;
+    opacity: 0.5;
+  }
+
+  .article-thumbnail {
+    margin-top: var(--everest);
+  }
+
+  .page-title a {
+    color: var(--cherry-100);
+  }
+
+  .fp-header {
+    padding: 0;
+    grid-row: initial;
+
+    hr {
+      display: none;
+    }
+  }
+}
+
+/*------------------------------------*/
+
+/* this should be looked at I think it can be done better */
+.article-content-specific iframe {
+  max-width: 100%;
+  height: 100%;
+
+  @media (min-width: 40rem) {
+    min-height: 100%;
+  }
+}
+
+.article-date {
+  grid-row: 2;
+  grid-column: 2;
+
+  @media (min-width: 40rem) {
+    grid-column: 2 / 6;
+  }
+}
+
+.article-content {
+  grid-column: 2;
+  @media (min-width: 40rem) {
+    grid-column: 2 / 6;
+  }
+}
+
+.article-content-specific {
+  grid-column: 2;
+  margin-bottom: var(--vinson);
+
+  @media (min-width: 40rem) {
+    grid-column: 2 / 6;
+    margin-bottom: var(--everest);
+  }
+}
