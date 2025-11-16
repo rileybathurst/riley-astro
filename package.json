@@ -4,9 +4,10 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "tsc --noEmit && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "stay-gold": "stay-gold"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
@@ -15,7 +16,11 @@
     "@types/react-dom": "^19.2.3",
     "astro": "^5.15.3",
     "husky": "^9.1.7",
+    "lightningcss": "^1.30.2",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "stay-gold": "^1.1.0"
+  },
+  "devDependencies": {
   }
 }

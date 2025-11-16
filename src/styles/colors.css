@@ -63,7 +63,7 @@ body {
 }
 
 .header-logo:hover {
-  fill: var(cherry-300);
+  fill: var(--cherry-300);
 }
 
 .subheader {
