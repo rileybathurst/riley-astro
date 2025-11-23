@@ -17,7 +17,7 @@ body {
 }
 
 main {
-  max-width: var(--stork);
+  max-width: var(--condor);
   margin-inline: auto;
   margin-block: var(--everest);
 }
@@ -1007,6 +1007,10 @@ TODO: media variables are sass
     grid-column: 2;
     z-index: 11;
     mix-blend-mode: multiply;
+
+    @media (prefers-color-scheme: dark) {
+      mix-blend-mode: screen;
+    }
   }
 
   .bathurst {

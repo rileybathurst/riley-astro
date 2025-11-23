@@ -12,11 +12,21 @@ const clients: clientTypes[] = await fetchApi({
 });
 ---
 
-<Layout>
+<Layout title="Clients">
     <main>
         <h1>Clients</h1>
         <hr />
-        {clients.map((client) => <article>{client.name}</article>)}
+        <section>
+
+            {clients.map((client) => 
+        <article>
+                <a href={`/client/${client.slug}`}>
+            {client.name}
+            </a>
+            </article>
+        
+    )}
+    </section>
         <hr />
     </main>
 </Layout>

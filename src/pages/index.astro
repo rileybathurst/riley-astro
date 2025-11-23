@@ -1,7 +1,38 @@
 ---
 import Layout from "../components/layout.astro";
+
+import fetchApi from '../lib/strapi';
+
+type clientType = {
+    id: number;
+    name: string;
+    slug: string;
+};
+const clients: clientType[] = await fetchApi({
+    endpoint: 'clients', // the content type to fetch
+    wrappedByKey: 'data', // the key to unwrap the response
+    more: false,
+});
 ---
 
 <Layout>
+    <main>
+        <section>
+            <h1>
+                <a href="/client">Clients</a>
+            </h1>
+            <ul>
+                {clients.map((client: clientType) => (
+                    <li>
+                        <h2>
+                            <a href={`/client/${client.slug}`}>
+                                {client.name}
+                            </a>
+                        </h2>
+                    </li>
+                ))}
+            </ul>
+        </section>
+    </main>
 
 </Layout>

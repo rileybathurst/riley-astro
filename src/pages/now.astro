@@ -20,13 +20,18 @@ const nows: NowType[] = await fetchApi({
 
 ---
 
-<Layout>
-		<h1>Now</h1>
+<Layout
+  title="Now"
+>
+  <main>
 
+    <h1>Now</h1>
+    
     <hr />
     {nows.map((now) => (
       <article>
         <BlocksRenderer content={now.description} />
       </article>
     ))}
+    </main>
 </Layout>

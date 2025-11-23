@@ -8,11 +8,42 @@ const about: AboutType = await fetchApi({
     more: false,
 });
 
+type breadcrumbTypes = {
+    title: string;
+    slug: string;
+};
+
 ---
 
 <header class="header__concept">
-    <div class="breadcrumbs">HOME</div>
+    <div class="breadcrumbs">
+        <a href='/'>
+            {about.name}
+        </a>
+
+        {Astro.props.breadcrumbs && (
+            Astro.props.breadcrumbs.map((breadcrumb: breadcrumbTypes, index: number) => (
+                <>
+                    <span>&emsp;|&emsp;</span>
+                    <a href={'/' + breadcrumb.slug}>
+                        {breadcrumb.title}
+                    </a>
+                </>
+            ))
+        )}
+        
+        {Astro.props.title && (
+            <>&emsp;|&emsp; 
+            {Astro.props.title}
+            </>
+        )}
+        </div>
+        <!-- TODO: move the tag line to astro -->
     <div class="spine">PUSHING PIXELS</div>
-    <h1 class="riley">{about.name.split(' ')[0]}</h1>
+    <h1 class="riley">
+        <a href=""/>
+            {about.name.split(' ')[0]}
+        </a>
+    </h1>
     <h2 class="bathurst">{about.name.split(' ')[1]}</h2>
 </header>

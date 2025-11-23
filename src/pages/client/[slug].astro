@@ -1,0 +1,59 @@
+---
+import Layout from "../../components/layout.astro";
+import fetchApi from "../../lib/strapi";
+
+type clientTypes = {
+    name: string;
+    slug: string;
+    projects: {
+        title: string;
+        slug: string;
+    }[];
+};
+
+export async function getStaticPaths() {
+    const clients = await fetchApi<clientTypes[]>({
+        endpoint: "clients", // the content type to fetch
+        wrappedByKey: "data", // the key to unwrap the response
+        fields: ["projects"],
+        // more: true,
+    });
+
+    // console.log(clients);
+
+    return clients.map((client) => ({
+        params: { slug: client.slug },
+        props: client,
+    }));    
+}
+
+const client = Astro.props;
+
+---
+
+<Layout 
+    title={client.name}
+    breadcrumbs={[{ title: "Client", slug: "client" }]}
+>
+    <main>
+        <h1>{client.name}</h1>
+
+        <h2>Role - {client.role}</h2>
+
+        <hr />
+
+        <h2>Projects</h2>
+        <section>     
+                {client.projects.map((project) => (
+                    <article>
+                        <h3>
+                            {/* // TODO: Figure out the slug of a project, if its behind a client but some dont have clients  */}
+                            <a href={`/project/${project.slug}`}>
+                                {project.title}
+                            </a>
+                        </h3>
+                    </article>
+                ))}
+        </section>
+    </main>
+</Layout>

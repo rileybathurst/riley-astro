@@ -1,4 +1,5 @@
 ---
+import Header from "./header.astro";
 import Footer from "./footer.astro";
 import "../styles/app.css";
 ---
@@ -10,10 +11,13 @@ import "../styles/app.css";
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="stylesheet" href="../styles/app.css" />
-		<title>Riley</title>
+		<title>Riley | {Astro.props.title}</title>
 	</head>
 	<body>
-        <!-- <Header /> -->
+        <Header
+			title={Astro.props.title}
+			breadcrumbs={Astro.props.breadcrumbs}
+		/>
 		<slot />
         <Footer />
 	</body>

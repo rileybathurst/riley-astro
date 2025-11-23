@@ -2,15 +2,24 @@
 import Layout from "../../components/layout.astro";
 import fetchApi from "../../lib/strapi";
 
+import { YouTube } from 'astro-embed';
+
 type projectTypes = {
     title: string;
     slug: string;
+    client?: {
+        name: string;
+        slug: string;
+    };
+    embed?: string;
+    link?: string;
 };
 
 export async function getStaticPaths() {
     const projects = await fetchApi<projectTypes[]>({
         endpoint: "projects", // the content type to fetch
         wrappedByKey: "data", // the key to unwrap the response
+        fields: ["client"],
         // more: true,
     });
 
@@ -25,8 +34,25 @@ const project = Astro.props;
 
 ---
 
-<Layout>
+<Layout
+    title={project.title}
+    breadcrumbs={
+    [...(project.client ? [{ title: project.client.name, slug: project.client.slug }] : [])]
+    }
+>
     <main>
         <h1>{project.title}</h1>
+        <h2>Client - {project.client?.name}</h2>
+
+        <!-- {project.embed} -->
+        <a href={project.link}>{project.link}</a>
+
+        {(() => {
+            const url = project.link;
+            if (!url || !url.includes("youtube")) return null;
+            const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
+            if (!match) return null;
+            return <YouTube id={match[1]} />;
+        })()}
     </main>
 </Layout>

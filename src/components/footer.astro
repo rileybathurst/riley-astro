@@ -10,6 +10,11 @@ const about: AboutType = await fetchApi({
 
 // console.log(about);
 
+import Instagram from '../svg/instagram.astro';
+import LinkedIn from '../svg/linkedin.astro';
+import GitHub from '../svg/github.astro';
+import Phone from './phone.astro';
+
 ---
 <footer class="site-footer">
   <div class="footer_info">
@@ -44,33 +49,30 @@ const about: AboutType = await fetchApi({
 
     {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address */}
     <address class="footer_contact">
-      {/* add some more details to this ie subject */}
+      {/* // TODO: add some more details to this ie subject */}
       <p>
-        <!-- <a href={`mailto:${useSiteMetadata().email}`}> -->
-          <!-- {useSiteMetadata().email} -->
-        <!-- </a> -->
+        <a href={`mailto:${about.email}`}>
+          {about.email}
+        </a>
       </p>
       <p>
-        <!-- <a href={`tel:+${useSiteMetadata().phone}`}>{useSiteMetadata().phone}</a> -->
+          <Phone phone={about.phone} />
       </p>
     </address>
   </div>
 
   <div class="background-primary background-primary__social-icons">
     <div class="social-icons">
-      {/* TODO: move these to comopnents */}
       <div class="fp-box">
-        <!-- <a href="https://www.instagram.com/rileybathurst/"> -->
-          <!-- <Instagram /> -->
-        <!-- </a> -->
+        <a href={`https://www.instagram.com/${about.instagram}/`}>
+          <Instagram />
+        </a>
       </div>
-      {
-        /*         <div class="fp-box">
-          <a href="https://www.linkedin.com/in/rileybathurst/">
+      <div class="fp-box">
+          <a href={`https://www.linkedin.com/in/${about.linkedin}/`}>
             <LinkedIn />
           </a>
-        </div> */
-      }
+        </div>
       {/* // TODO: add a link to /rss.xml */}
       <div>
         <!-- <a href="/rss.xml"> -->
@@ -79,9 +81,9 @@ const about: AboutType = await fetchApi({
         <!-- </a> -->
       </div>
       <div class="fp-box">
-        <!-- <a href="https://github.com/rileybathurst"> -->
-          <!-- <GitHub /> -->
-        <!-- </a> -->
+        <a href={`https://github.com/${about.github}/`}>
+          <GitHub />
+        </a>
       </div>
     </div>
   </div>

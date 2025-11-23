@@ -15,7 +15,9 @@ const about: aboutTypes = await fetchApi({
 // console.log(about);
 ---
 
-<Layout>
+<Layout
+    title="About"
+>
     <main>
         <h1>About</h1>
         <BlocksRenderer content={about.description} />
