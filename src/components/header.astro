@@ -1,11 +1,15 @@
 ---
 import fetchApi from "../lib/strapi";
 import type { AboutType } from "../types/about-type";
+import { Image } from "astro:assets";
 
 const about: AboutType = await fetchApi({
     endpoint: "about", // the content type to fetch
     wrappedByKey: "data", // the key to unwrap the response
     more: false,
+    populate: {
+        profile: true,
+    }
 });
 
 type breadcrumbTypes = {
@@ -45,5 +49,14 @@ type breadcrumbTypes = {
             {about.name.split(' ')[0]}
         </a>
     </h1>
+
+    <Image
+        src={about.profile.url}
+        width={about.profile.imageWidth || 1200}
+        height={about.profile.imageHeight || 600}
+        alt={about.profile.alternativeText || about.name}
+        class='headshot'
+    />
+
     <h2 class="bathurst">{about.name.split(' ')[1]}</h2>
 </header>

@@ -7,4 +7,10 @@ export type AboutType = {
   instagram: string;
   linkedin: string;
   github: string;
+  profile: {
+    url: string;
+    alternativeText: string;
+    imageWidth: number;
+    imageHeight: number;
+  };
 };

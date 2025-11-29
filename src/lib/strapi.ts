@@ -1,4 +1,5 @@
 // import { env } from "../env";
+import qs from "qs";
 
 interface Props {
 	endpoint: string;
@@ -7,6 +8,7 @@ interface Props {
 	wrappedByList?: boolean;
 	fields?: string[];
 	more?: boolean;
+	populate?: Record<string, boolean>;
 }
 
 /**
@@ -16,6 +18,7 @@ interface Props {
  * @param wrappedByKey - The key to unwrap the response from
  * @param wrappedByList - If the response is a list, unwrap it
  * @param more - If true, fetch more data
+ * @param populate - The fields to populate
  * @returns
  */
 export default async function fetchApi<T>({
@@ -23,6 +26,7 @@ export default async function fetchApi<T>({
 	wrappedByKey,
 	fields,
 	more,
+	populate,
 }: Props): Promise<T> {
 	if (endpoint.startsWith("/")) {
 		endpoint = endpoint.slice(1);
@@ -50,15 +54,29 @@ export default async function fetchApi<T>({
 	// the questions mark is always needed but its fine to run it straight into an ampersand
 	// http://45.79.101.19:1340/api/plans?&pagination[pageSize]=100
 
+	// Convert populate object to array query string: populate[1]=hero&populate[2]=collaborators
+	var populateParams = "";
+	if (populate) {
+		populateParams = Object.keys(populate)
+		.map((key, idx) => `populate[${idx + 1}]=${key}`)
+		.join("&");
+	}
+
+	// console.log(populateParams);
+
+	// populate ? `?${qs.stringify({ populate }, { encode: false })}` : "";
+
 	// 100 is max page size
 	const url = new URL(
-		`${import.meta.env.STRAPI_URL}/api/${endpoint}?${
-			fields ? `${passedFields}` : ""
-		}${more ? `&pagination[pageSize]=100&pagination[page]=100` : ""}`,
+		`${import.meta.env.STRAPI_URL}/api/${endpoint}${
+			fields ? `?${passedFields}` : ""
+		}${more ? `&pagination[pageSize]=100&pagination[page]=100` : ""}${
+			populateParams ? `?${populateParams}` : ""
+		}`,
 	);
 
   	// console.log('Fetching from Strapi API:');
-	// console.log(url.toString());
+	console.log(url.toString());
 
 	let allData: T[] = [];
 	let page = 1;
