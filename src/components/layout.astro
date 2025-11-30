@@ -11,7 +11,9 @@ import "../styles/app.css";
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="stylesheet" href="../styles/app.css" />
-		<title>Riley | {Astro.props.title}</title>
+
+		<!-- TODO: needs a strapi import on the name and when its -->
+		<title>Riley{Astro.props.title ?  '| ' + Astro.props.title : null}</title>
 	</head>
 	<body>
         <Header

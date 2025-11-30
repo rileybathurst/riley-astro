@@ -1,12 +1,12 @@
 // this is the Name.stories.jsx file
 import React from "react";
-import {Riley} from './riley';
+import { Button } from "./button";
 
 export default {
-title: 'Riley',
-component: Riley,
+  title: "Atoms/Button",
+  component: Button,
 };
 
-const Template = () => <Riley />;
+const Template = () => <Button />;
 
 export const Primary = Template.bind({});
