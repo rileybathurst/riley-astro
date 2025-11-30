@@ -1,6 +1,6 @@
 // this is the Name.stories.jsx file
 import React from 'react';
-import { Lists } from './Lists';
+import { Lists } from './lists';
 
 export default {
   title: 'Atoms/Lists',

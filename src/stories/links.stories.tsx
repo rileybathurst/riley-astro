@@ -1,6 +1,6 @@
 // this is the Name.stories.jsx file
 import React from "react";
-import { Links } from "./Links";
+import { Links } from "./links";
 
 export default {
   title: "Atoms/Links",

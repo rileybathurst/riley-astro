@@ -1,6 +1,6 @@
 // this is the Name.stories.jsx file
 import React from 'react';
-import { Spacing } from './Spacing';
+import { Spacing } from './spacing';
 
 export default {
   title: 'Atoms/Spacing',

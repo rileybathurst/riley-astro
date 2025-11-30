@@ -1,5 +1,5 @@
 // this is the Name.stories.jsx file
-import { Contrasts } from './Contrasts';
+import { Contrasts } from './contrasts';
 
 export default {
   title: 'Atoms/Contrasts',

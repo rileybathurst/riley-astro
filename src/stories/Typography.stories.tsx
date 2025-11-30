@@ -1,6 +1,6 @@
 // this is the Name.stories.jsx file
 import React from 'react';
-import { Typography } from './Typography';
+import { Typography } from './typography';
 
 export default {
   title: 'Atoms/Typography',
