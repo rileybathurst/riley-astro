@@ -1,13 +1,13 @@
-// this is the Header.tsx file
+// this is the Gutters.tsx file
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-import { Header } from './header';
+import { Gutters } from './gutters';
 
 const meta = {
-component: Header,
-title: 'Organisms/Header',
+component: Gutters,
+title: 'Molecules/Gutters',
 args: { onClick: fn() },
-} satisfies Meta<typeof Header>;
+} satisfies Meta<typeof Gutters>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

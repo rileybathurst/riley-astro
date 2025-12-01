@@ -23,34 +23,182 @@ main {
 }
 
 /*------------------------------------*/
+/* #Singles */
+/*------------------------------------*/
 
-.spine-border {
+.vulture {
+  max-width: var(--vulture);
+  margin: 0 auto;
+}
+
+.stork {
+  max-width: var(--stork);
+  margin: 0 auto;
+}
+
+.condor {
+  max-width: var(--condor);
+  margin: 0 auto;
+}
+
+.pelican {
+  max-width: var(--pelican);
+  margin: 0 auto;
+}
+
+.albatross {
+  max-width: var(--albatross);
+  margin: 0 auto;
+}
+
+/*------------------*/
+/* #Gutters */
+/*------------------*/
+
+.gutters {
+  margin: 0 auto;
+  width: 100%;
+  max-width: var(--albatross);
+  display: grid;
+  grid-template-columns: var(--denali) 1fr var(--denali);
+  gap: var(--vinson);
+  place-items: center;
+
+  > * {
+    grid-row: 1;
+    height: 100%;
+  }
+
+  .fore {
+    grid-column: 1;
+    writing-mode: vertical-rl;
+  }
+
+  .cover {
+    width: 100%;
+    grid-column: 2;
+    /* z-index: 11; */
+    /* mix-blend-mode: multiply; */
+
+    /*  @media (prefers-color-scheme: dark) {
+      mix-blend-mode: screen;
+    } */
+
+    .single {
+      max-width: var(--condor);
+    }
+
+    /* TODO: name */
+  }
+  
+  .combo {
+    display: flex;
+    flex-direction: row wrap;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  .close {
+    /* place-self: center; */
+    display: grid;
+    grid-template-columns: auto 1fr 1fr auto;
+    gap: var(--vinson);
+    /* place-items: ; */
+
+    /* > * {
+      width: 100%;
+    } */
+  }
+
+
+
+  .spine {
+    grid-column: 3;
+    writing-mode: vertical-rl;
+  }
+
+  /* svg {
+    width: 33%;
+    height: 33%;
+    grid-column: 2;
+  } */
+
+  /* .white {
+    fill: white;
+    filter: blur(var(--woodstar));
+  } */
+
+  /* .cherry {
+    fill: transparent;
+    stroke: var(--cherry-100);
+    stroke-width: var(--woodstar);
+    filter: blur(var(--kosciuszko));
+    padding-inline-start: var(--woodstar);
+    padding-block-start: var(--woodstar);
+  } */
+
+  /* .headshot {
+    grid-column: 2;
+    grid-row: 1;
+    aspect-ratio: 16/9;
+  } */
+}
+
+.gutter-spread {
+  grid-template-columns: var(--denali) 1fr 1fr var(--denali);
+
+  .one {
+    justify-self: end;
+    grid-column: 2;
+    margin: initial;
+  }
+  .two {
+    justify-self: start;
+    grid-column: 3;
+    margin: initial;
+  }
+
+  .spine {
+    grid-column: 4;
+  }
+}
+
+/*------------------------------------*/
+/* #Spine Border */
+/*------------------------------------*/
+
+/* .spine-border {
   width: var(--vinson);
   grid-row: 1/3;
   grid-column: 1;
-  /* over the top of categories on single */
+  over the top of categories on single
   z-index: var(--understory);
   justify-self: end;
 
   @media (min-width: 40rem) {
-    justify-self: start; /* categories takes up that space as well */
+    justify-self: start; 
+    categories takes up that space as well
   }
-}
+} */
 
 /* even tho these are the same the names help keep them seperate */
-.single .spine-border,
+/* .single .spine-border,
 .category .spine-border {
-  /* image : header : date : content */
+  image : header : date : content
   grid-row: 1/5;
   grid-column: 1;
-  /* I think this is a browser default */
+  I think this is a browser default
   justify-self: start;
 
   @media (min-width: 40rem) {
-    grid-row: 1/4; /* what are the 6: header : date : content */
-    justify-self: start; /* categories takes up that space as well */
+    grid-row: 1/4; 
+    what are the 6: header : date : content
+    justify-self: start; 
+    categories takes up that space as well
   }
-}
+} */
 
 .passage {
   max-width: var(--pelican);
@@ -181,27 +329,27 @@ main {
   }
 }
 
-.spine {
+/* .spine {
   grid-column: 3;
   grid-row: 2/4;
   writing-mode: vertical-rl;
-  /* match header-logo */
+  /* match header-logo
   justify-self: center;
 
   @media (min-width: 40rem) {
     grid-row: 2;
     grid-column: 5;
   }
-}
+} */
 
-.single .spine {
+/* .single .spine {
   grid-row: 1/3;
   align-self: end;
 
   @media (min-width: 40rem) {
     grid-column: 3;
   }
-}
+} */
 
 .custom-header-media,
 .custom-header-photo,
@@ -982,76 +1130,10 @@ TODO: media variables are sass
   }
 }
 
-/* TODO: Name */
-/*------------------*/
-/* #HEADER__CONCEPT */
-/*------------------*/
 
-.header__concept {
-  display: grid;
-  grid-template-columns: var(--denali) 1fr var(--denali);
-  place-items: center;
-  /* color: var(--cherry-100); */
-  font-weight: 700;
-
-  > * {
-    grid-row: 1;
-  }
-
-  .breadcrumbs {
-    grid-column: 1;
-    writing-mode: vertical-rl;
-  }
-
-  .riley {
-    grid-column: 2;
-    z-index: 11;
-    mix-blend-mode: multiply;
-
-    @media (prefers-color-scheme: dark) {
-      mix-blend-mode: screen;
-    }
-  }
-
-  .bathurst {
-    grid-column: 2;
-    z-index: 10;
-    color: transparent;
-    mix-blend-mode: multiply;
-  }
-
-  .spine {
-    grid-column: 3;
-    writing-mode: vertical-rl;
-  }
-
-  svg {
-    width: 33%;
-    height: 33%;
-    grid-column: 2;
-  }
-
-  .white {
-    fill: white;
-    filter: blur(var(--woodstar));
-  }
-
-  /* TODO: rename this */
-  .cherry {
-    fill: transparent;
-    stroke: var(--cherry-100);
-    stroke-width: var(--woodstar);
-    filter: blur(var(--kosciuszko));
-    padding-inline-start: var(--woodstar);
-    padding-block-start: var(--woodstar);
-  }
-
-  .headshot {
-    grid-column: 2;
-    grid-row: 1;
-    aspect-ratio: 16/9;
-  }
-}
+/*------------------------------------*/
+/* #Social Icons */
+/*------------------------------------*/
 
 .social-icons {
   max-width: var(--albatross);

@@ -1,13 +1,13 @@
-// this is the Header.tsx file
+// this is the Footer.tsx file
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-import { Header } from './header';
+import { Footer } from './footer';
 
 const meta = {
-component: Header,
-title: 'Organisms/Header',
+component: Footer,
+title: 'Atoms/Footer',
 args: { onClick: fn() },
-} satisfies Meta<typeof Header>;
+} satisfies Meta<typeof Footer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

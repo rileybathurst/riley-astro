@@ -2,7 +2,7 @@
 import { Footer } from './footer';
 import { Header } from './header';
 
-export const PageTemplate = () => {
+export const Client = () => {
 
     return (
         <>

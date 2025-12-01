@@ -1,13 +1,13 @@
-// this is the Header.tsx file
+// this is the LineLength.tsx file
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-import { Header } from './header';
+import { LineLength } from './line-length';
 
 const meta = {
-component: Header,
-title: 'Organisms/Header',
+component: LineLength,
+title: 'Molecules/LineLength',
 args: { onClick: fn() },
-} satisfies Meta<typeof Header>;
+} satisfies Meta<typeof LineLength>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
