@@ -5,6 +5,7 @@ import fetchApi from "../../lib/strapi";
 type clientTypes = {
     name: string;
     slug: string;
+    role: string;
     projects: {
         title: string;
         slug: string;
@@ -16,10 +17,7 @@ export async function getStaticPaths() {
         endpoint: "clients", // the content type to fetch
         wrappedByKey: "data", // the key to unwrap the response
         fields: ["projects"],
-        // more: true,
     });
-
-    // console.log(clients);
 
     return clients.map((client) => ({
         params: { slug: client.slug },

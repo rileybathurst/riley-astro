@@ -17,11 +17,14 @@ const styleguides: styleguideTypes[] = await fetchApi({
     <main>
         <h1>styleguide</h1>
         <hr />
-        {styleguides.map((styleguide) => (
-            <article>
+        <section>
+            {styleguides.map((styleguide) => (
+                <article>
+                    <a href={`/styleguide/${styleguide.slug}`}>
                     {styleguide.name}
+                    </a>
             </article>
         ))}
-        <hr />
+        </section>
     </main>
 </Layout>

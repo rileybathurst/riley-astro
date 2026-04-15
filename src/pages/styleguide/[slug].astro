@@ -1,0 +1,39 @@
+---
+import Layout from "../../components/layout.astro";
+import fetchApi from "../../lib/strapi";
+
+type styleguideTypes = {
+    name: string;
+    slug: string;
+    guide: string;
+};
+export async function getStaticPaths() {
+    const styleguides = await fetchApi<styleguideTypes[]>({
+        endpoint: "styleguides", // the content type to fetch
+        wrappedByKey: "data", // the key to unwrap the response
+    });
+
+    console.log(styleguides);
+
+    return styleguides
+        .filter((styleguide) => styleguide.slug != null)
+        .map((styleguide) => ({
+            params: { slug: styleguide.slug },
+            props: styleguide,
+        }));
+}
+
+const styleguide = Astro.props;
+---
+
+<Layout
+    title={styleguide.name}
+    breadcrumbs={[{ title: "Styleguide", slug: "styleguide" }]}
+>
+    <main>
+        <h1>{styleguide.name}</h1>
+        {styleguide.guide}
+    </main>
+
+    <a href="/styleguide">Back to styleguides</a>
+</Layout>
