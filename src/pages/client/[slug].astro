@@ -10,7 +10,7 @@ type clientTypes = {
     title: string;
     slug: string;
   }[];
-  hero: {
+  hero?: {
     url: string;
   };
 };
@@ -28,14 +28,12 @@ export async function getStaticPaths() {
 }
 
 const client = Astro.props;
-
-console.log(client);
 ---
 
 <Layout
   title={client.name}
   breadcrumbs={[{ title: "Client", slug: "client" }]}
-  hero={client.hero.url}
+  hero={client.hero?.url}
 >
   <main>
     <h1>{client.name}</h1>
