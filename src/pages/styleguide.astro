@@ -3,28 +3,28 @@ import Layout from "../components/layout.astro";
 import fetchApi from "../lib/strapi";
 
 type styleguideTypes = {
-    name: string;
-    slug: string;
+  name: string;
+  slug: string;
 };
 const styleguides: styleguideTypes[] = await fetchApi({
-    endpoint: "styleguides", // the content type to fetch
-    // wrappedByKey: "data", // the key to unwrap the response
-    // more: false,
+  endpoint: "styleguides", // the content type to fetch
+  //
+  // more: false,
 });
 ---
 
 <Layout>
-    <main>
-        <h1>styleguide</h1>
-        <hr />
-        <section>
-            {styleguides.map((styleguide) => (
-                <article>
-                    <a href={`/styleguide/${styleguide.slug}`}>
-                    {styleguide.name}
-                    </a>
-            </article>
-        ))}
-        </section>
-    </main>
+  <main>
+    <h1>styleguide</h1>
+    <hr />
+    <section>
+      {
+        styleguides.map((styleguide) => (
+          <article>
+            <a href={`/styleguide/${styleguide.slug}`}>{styleguide.name}</a>
+          </article>
+        ))
+      }
+    </section>
+  </main>
 </Layout>

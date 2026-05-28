@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "stay-gold && astro dev",
+    "dev": "stay-gold && npm run astro check && astro dev",
     "build": "npm run stay-gold && npm run astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",

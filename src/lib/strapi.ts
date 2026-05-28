@@ -47,7 +47,6 @@ interface Props {
  * Fetches data from the Strapi API
  * @param endpoint - The endpoint to fetch from
  * @param query - The query parameters to add to the url
-//  * @param wrappedByKey - The key to unwrap the response from
  * @param wrappedByList - If the response is a list, unwrap it
  * @param more - If true, fetch more data
  * @param populate - The fields to populate
@@ -57,7 +56,6 @@ export default async function fetchApi<T>({
 	endpoint,
 	query,
 	limit,
-	// wrappedByKey,
 	fields,
 	more,
 	populate,
@@ -119,7 +117,7 @@ export default async function fetchApi<T>({
 
 	console.log(url.toString());
 
-	let page = 1;
+	// let page = 1;
 
 	const res = await fetch(url.toString(), {
 		method: "GET",

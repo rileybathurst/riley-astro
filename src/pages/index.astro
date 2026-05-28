@@ -32,19 +32,6 @@ const about: aboutType = await fetchApi({
   endpoint: "about", // the content type to fetch
   more: false,
 });
-
-const getClientSvgSrc = (svg: string): string => {
-  const value = svg.trim();
-
-  if (value.startsWith("<svg")) {
-    console.log("🦄");
-    return `data:image/svg+xml;utf8,${encodeURIComponent(value)}`;
-  }
-
-  const baseUrl = import.meta.env.STRAPI_URL?.replace(/\/$/, "") ?? "";
-  const path = value.startsWith("/") ? value : `/${value}`;
-  return `${baseUrl}${path}`;
-};
 ---
 
 <Layout>

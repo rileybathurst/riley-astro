@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 
 const about: AboutType = await fetchApi({
   endpoint: "about", // the content type to fetch
-  // wrappedByKey: "data", // the key to unwrap the response
+  //
   more: false,
   populate: {
     profile: true,

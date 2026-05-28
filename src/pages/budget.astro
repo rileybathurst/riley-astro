@@ -1,36 +1,36 @@
 ---
 import Layout from "../components/layout.astro";
 import {
-    BlocksRenderer,
-    type BlocksContent,
+  BlocksRenderer,
+  type BlocksContent,
 } from "@strapi/blocks-react-renderer";
 import fetchApi from "../lib/strapi";
 import type React from "react";
 
 type budgetsTypes = {
-    id: React.Key;
-    service: string;
-    description: BlocksContent;
+  id: React.Key;
+  service: string;
+  description: BlocksContent;
 }[];
 const budgets: budgetsTypes = await fetchApi({
-    endpoint: "budgets", // the content type to fetch
-    wrappedByKey: "data", // the key to unwrap the response
-    more: false,
+  endpoint: "budgets", // the content type to fetch
+
+  more: false,
 });
 ---
 
 <Layout title="Budget">
-    <main>
-        <h1>Budget</h1>
-        <section>
-            {
-                budgets.map((budget) => (
-                    <article>
-                        <h2>{budget.service}</h2>
-                        <BlocksRenderer content={budget.description} />
-                    </article>
-                ))
-            }
-        </section>
-    </main>
+  <main>
+    <h1>Budget</h1>
+    <section>
+      {
+        budgets.map((budget) => (
+          <article>
+            <h2>{budget.service}</h2>
+            <BlocksRenderer content={budget.description} />
+          </article>
+        ))
+      }
+    </section>
+  </main>
 </Layout>

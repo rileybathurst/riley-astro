@@ -1,21 +1,20 @@
 ---
-import fetchApi from '../lib/strapi';
-import type { AboutType } from '../types/about-type';
+import fetchApi from "../lib/strapi";
+import type { AboutType } from "../types/about-type";
 
 const about: AboutType = await fetchApi({
-  endpoint: 'about', // the content type to fetch
-  wrappedByKey: 'data', // the key to unwrap the response
+  endpoint: "about", // the content type to fetch
   more: false,
 });
 
 // console.log(about);
 
-import Instagram from '../svg/instagram.astro';
-import LinkedIn from '../svg/linkedin.astro';
-import GitHub from '../svg/github.astro';
-import Phone from './phone.astro';
-
+import Instagram from "../svg/instagram.astro";
+import LinkedIn from "../svg/linkedin.astro";
+import GitHub from "../svg/github.astro";
+import Phone from "./phone.astro";
 ---
+
 <footer class="site-footer">
   <div class="footer_info">
     <div class="footer_copyright">
@@ -59,7 +58,7 @@ import Phone from './phone.astro';
         </a>
       </p>
       <p>
-          <Phone phone={about.phone} />
+        <Phone phone={about.phone} />
       </p>
     </address>
   </div>
@@ -72,15 +71,15 @@ import Phone from './phone.astro';
         </a>
       </div>
       <div class="fp-box">
-          <a href={`https://www.linkedin.com/in/${about.linkedin}/`}>
-            <LinkedIn />
-          </a>
-        </div>
+        <a href={`https://www.linkedin.com/in/${about.linkedin}/`}>
+          <LinkedIn />
+        </a>
+      </div>
       {/* // TODO: add a link to /rss.xml */}
       <div>
         <!-- <a href="/rss.xml"> -->
-          {/* // TODO: this doesnt work yet */}
-          <!-- <RSS /> -->
+        {/* // TODO: this doesnt work yet */}
+        <!-- <RSS /> -->
         <!-- </a> -->
       </div>
       <div class="fp-box">

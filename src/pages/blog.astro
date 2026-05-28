@@ -3,28 +3,27 @@ import Layout from "../components/layout.astro";
 import fetchApi from "../lib/strapi";
 
 type blogTypes = {
-    title: string;
-    slug: string;
+  title: string;
+  slug: string;
 };
 const blogs: blogTypes[] = await fetchApi({
-    endpoint: "blogs", // the content type to fetch
-    wrappedByKey: "data", // the key to unwrap the response
-    // more: false,
-});
+  endpoint: "blogs", // the content type to fetch
 
+  // more: false,
+});
 ---
 
 <Layout>
-    <main>
-        <h1>Blog</h1>
-        <hr />
-        {blogs.map((blog) => (
-            <article>
-                <a href={'/blog/' + blog.slug}>
-                    {blog.title}
-                </a>
-            </article>
-        ))}
-        <hr />
-    </main>
+  <main>
+    <h1>Blog</h1>
+    <hr />
+    {
+      blogs.map((blog) => (
+        <article>
+          <a href={"/blog/" + blog.slug}>{blog.title}</a>
+        </article>
+      ))
+    }
+    <hr />
+  </main>
 </Layout>

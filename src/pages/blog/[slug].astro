@@ -3,22 +3,21 @@ import Layout from "../../components/layout.astro";
 import fetchApi from "../../lib/strapi";
 
 type blogTypes = {
-    title: string;
-    slug: string;
+  title: string;
+  slug: string;
 };
 
 export async function getStaticPaths() {
-    const blogs = await fetchApi<blogTypes[]>({
-        endpoint: "blogs", // the content type to fetch
-        wrappedByKey: "data", // the key to unwrap the response
-        // more: true,
-    });
+  const blogs = await fetchApi<blogTypes[]>({
+    endpoint: "blogs", // the content type to fetch
 
-    return blogs.map((blog) => ({
-        params: { slug: blog.slug },
-        props: blog,
-    }));
-    
+    // more: true,
+  });
+
+  return blogs.map((blog) => ({
+    params: { slug: blog.slug },
+    props: blog,
+  }));
 }
 // console.log('Fetching blog data for slug page');
 // console.log(Astro.params.slug);
@@ -29,7 +28,7 @@ const blog = Astro.props;
 ---
 
 <Layout>
-    <main>
-        <h1>{blog.title}</h1>
-    </main>
+  <main>
+    <h1>{blog.title}</h1>
+  </main>
 </Layout>

@@ -1,37 +1,37 @@
 ---
 import Layout from "../components/layout.astro";
 
-import { BlocksRenderer, type BlocksContent} from "@strapi/blocks-react-renderer";
+import {
+  BlocksRenderer,
+  type BlocksContent,
+} from "@strapi/blocks-react-renderer";
 
 type NowType = {
   id: number;
   description: BlocksContent;
 };
 
-import fetchApi from '../lib/strapi';
+import fetchApi from "../lib/strapi";
 
 const nows: NowType[] = await fetchApi({
-  endpoint: 'nows', // the content type to fetch
-  wrappedByKey: 'data', // the key to unwrap the response
+  endpoint: "nows", // the content type to fetch
   more: false,
 });
 
 // console.log(nows);
-
 ---
 
-<Layout
-  title="Now"
->
+<Layout title="Now">
   <main>
-
     <h1>Now</h1>
-    
+
     <hr />
-    {nows.map((now) => (
-      <article>
-        <BlocksRenderer content={now.description} />
-      </article>
-    ))}
-    </main>
+    {
+      nows.map((now) => (
+        <article>
+          <BlocksRenderer content={now.description} />
+        </article>
+      ))
+    }
+  </main>
 </Layout>

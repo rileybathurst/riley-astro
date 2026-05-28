@@ -18,7 +18,7 @@ type projectTypes = {
 export async function getStaticPaths() {
   const projects = await fetchApi<projectTypes[]>({
     endpoint: "projects", // the content type to fetch
-    wrappedByKey: "data", // the key to unwrap the response
+
     fields: ["client"],
     // more: true,
   });

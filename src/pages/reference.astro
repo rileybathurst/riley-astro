@@ -3,25 +3,21 @@ import Layout from "../components/layout.astro";
 import fetchApi from "../lib/strapi";
 
 type referenceTypes = {
-    name: string;
-    slug: string;
+  name: string;
+  slug: string;
 };
 const references: referenceTypes[] = await fetchApi({
-    endpoint: "references", // the content type to fetch
-    // wrappedByKey: "data", // the key to unwrap the response
-    // more: false,
+  endpoint: "references", // the content type to fetch
+  //
+  // more: false,
 });
 ---
 
 <Layout>
-    <main>
-        <h1>Reference</h1>
-        <hr />
-        {references.map((reference) => (
-            <article>
-                    {reference.name}
-            </article>
-        ))}
-        <hr />
-    </main>
+  <main>
+    <h1>Reference</h1>
+    <hr />
+    {references.map((reference) => <article>{reference.name}</article>)}
+    <hr />
+  </main>
 </Layout>
