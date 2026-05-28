@@ -1,10 +1,42 @@
 // import { env } from "../env";
 import qs from "qs";
 
+type StrapiFilterValue = string | number | boolean | null;
+
+type StrapiFilterOperators = {
+	$eq?: StrapiFilterValue;
+	$ne?: StrapiFilterValue;
+	$lt?: number;
+	$lte?: number;
+	$gt?: number;
+	$gte?: number;
+	$in?: StrapiFilterValue[];
+	$notIn?: StrapiFilterValue[];
+	$contains?: string;
+	$containsi?: string;
+	$startsWith?: string;
+	$endsWith?: string;
+	$null?: boolean;
+	$notNull?: boolean;
+	$between?: [number, number];
+};
+
+interface StrapiWhere {
+	[key: string]: StrapiFilterValue | StrapiFilterOperators | StrapiWhere;
+}
+
+type LimitSchema = {
+	field?: string;
+	number?: number;
+	order?: "asc" | "desc";
+	where?: StrapiWhere;
+	nullsLast?: boolean;
+};
+
 interface Props {
 	endpoint: string;
 	query?: Record<string, string>;
-	wrappedByKey?: string;
+	limit?: LimitSchema;
 	wrappedByList?: boolean;
 	fields?: string[];
 	more?: boolean;
@@ -15,7 +47,7 @@ interface Props {
  * Fetches data from the Strapi API
  * @param endpoint - The endpoint to fetch from
  * @param query - The query parameters to add to the url
- * @param wrappedByKey - The key to unwrap the response from
+//  * @param wrappedByKey - The key to unwrap the response from
  * @param wrappedByList - If the response is a list, unwrap it
  * @param more - If true, fetch more data
  * @param populate - The fields to populate
@@ -23,7 +55,9 @@ interface Props {
  */
 export default async function fetchApi<T>({
 	endpoint,
-	wrappedByKey,
+	query,
+	limit,
+	// wrappedByKey,
 	fields,
 	more,
 	populate,
@@ -32,53 +66,59 @@ export default async function fetchApi<T>({
 		endpoint = endpoint.slice(1);
 	}
 
-	const keyValueFields = fields?.map((field, index) => {
-		return {
-			name: field,
-			number: index,
-		};
-	});
+	const queryParams: {
+		populate?: string[];
+		pagination?: { pageSize?: number; page?: number };
+		sort?: string;
+		filters?: StrapiWhere;
+	} & Record<string, unknown> = {
+		...(query ?? {}),
+	};
 
-	const passedFields = keyValueFields
-		? new URLSearchParams(
-				keyValueFields.reduce(
-					(acc, field) => {
-						acc[`populate[${field.name}]`] = "true";
-						return acc;
-					},
-					{} as Record<string, string>,
-				),
-			).toString()
-		: "";
+	const shouldApplyNullsLast =
+		Boolean(limit?.field) &&
+		(limit?.order ?? "asc") === "asc" &&
+		(limit?.nullsLast ?? true);
 
-	// the questions mark is always needed but its fine to run it straight into an ampersand
-	// http://45.79.101.19:1340/api/plans?&pagination[pageSize]=100
+	const populateFields = [
+		...(fields ?? []),
+		...Object.entries(populate ?? {})
+			.filter(([, shouldPopulate]) => shouldPopulate)
+			.map(([key]) => key),
+	];
 
-	// Convert populate object to array query string: populate[1]=hero&populate[2]=collaborators
-	var populateParams = "";
-	if (populate) {
-		populateParams = Object.keys(populate)
-		.map((key, idx) => `populate[${idx + 1}]=${key}`)
-		.join("&");
+	if (populateFields.length > 0) {
+		queryParams.populate = populateFields;
 	}
 
-	// console.log(populateParams);
+	if (more) {
+		queryParams.pagination = {
+			...(queryParams.pagination ?? {}),
+			pageSize: 100,
+			page: 100,
+		};
+	}
 
-	// populate ? `?${qs.stringify({ populate }, { encode: false })}` : "";
+	if (limit?.field) {
+		queryParams.sort = `${limit.field}:${limit.order ?? "asc"}`;
+	}
 
-	// 100 is max page size
-	const url = new URL(
-		`${import.meta.env.STRAPI_URL}/api/${endpoint}${
-			fields ? `?${passedFields}` : ""
-		}${more ? `&pagination[pageSize]=100&pagination[page]=100` : ""}${
-			populateParams ? `?${populateParams}` : ""
-		}`,
-	);
+	if (typeof limit?.number === "number") {
+		queryParams.pagination = {
+			...(queryParams.pagination ?? {}),
+			pageSize: shouldApplyNullsLast ? 100 : limit.number,
+		};
+	}
 
-  	// console.log('Fetching from Strapi API:');
+	if (limit?.where) {
+		queryParams.filters = limit.where;
+	}
+
+	const queryString = qs.stringify(queryParams, { encodeValuesOnly: true });
+	const url = `${import.meta.env.STRAPI_URL}/api/${endpoint}${queryString ? `?${queryString}` : ""}`;
+
 	console.log(url.toString());
 
-	let allData: T[] = [];
 	let page = 1;
 
 	const res = await fetch(url.toString(), {
@@ -87,32 +127,43 @@ export default async function fetchApi<T>({
 			Authorization: `Bearer ${import.meta.env.STRAPI_TOKEN}`,
 		},
 	});
-	// const { data, meta } = await res.json();
 	const pageData = await res.json();
 
-	// if (wrappedByKey) { // I think everything is wrapped by data?
 	const data = pageData.data || pageData;
-	// console.log('Strapi API response data:');
-	// console.log(data);
 
-/* 	while (more) {
-		url.searchParams.set("pagination[page]", page.toString());
+	if (shouldApplyNullsLast && Array.isArray(data) && limit?.field) {
+		const sortedData = [...data].sort((a, b) => {
+			const aValue = a?.[limit.field as keyof typeof a] as unknown;
+			const bValue = b?.[limit.field as keyof typeof b] as unknown;
 
-		// console.log(`Page ${page} data:`);
-		// console.log(pageData);
+			const aIsNull = aValue == null;
+			const bIsNull = bValue == null;
 
-		if (wrappedByKey) {
-			allData = allData.concat(pageData[wrappedByKey]);
-		} else {
-			allData = allData.concat(pageData);
+			if (aIsNull && bIsNull) {
+				return 0;
+			}
+
+			if (aIsNull) {
+				return 1;
+			}
+
+			if (bIsNull) {
+				return -1;
+			}
+
+			if (typeof aValue === "number" && typeof bValue === "number") {
+				return aValue - bValue;
+			}
+
+			return String(aValue).localeCompare(String(bValue));
+		});
+
+		if (typeof limit.number === "number") {
+			return sortedData.slice(0, limit.number) as T;
 		}
-		break;
-		/* hasMore =
-			pageData.meta.pagination.page < pageData.meta.pagination.pageCount;
-		page++;
-	}  */
 
-	// console.log(typeof pageData);
+		return sortedData as T;
+	}
 
 	return data as T;
 }

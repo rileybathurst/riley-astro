@@ -52,6 +52,26 @@ main {
 }
 
 /*------------------*/
+/* #LAYERS */
+/*------------------*/
+
+.emergent {
+  z-index: var(--emergent);
+}
+
+.canopy {
+  z-index: var(--canopy);
+}
+
+.understory {
+  z-index: var(--understory);
+}
+
+.floor {
+  z-index: var(--floor);
+}
+
+/*------------------*/
 /* #Gutters */
 /*------------------*/
 
@@ -64,7 +84,7 @@ main {
   gap: var(--vinson);
   place-items: center;
 
-  > * {
+  >* {
     grid-row: 1;
     height: 100%;
   }
@@ -77,73 +97,31 @@ main {
   .cover {
     width: 100%;
     grid-column: 2;
-    /* z-index: 11; */
-    /* mix-blend-mode: multiply; */
-
-    /*  @media (prefers-color-scheme: dark) {
-      mix-blend-mode: screen;
-    } */
 
     .single {
       max-width: var(--condor);
     }
-
-    /* TODO: name */
   }
-  
+
   .combo {
     display: flex;
     flex-direction: row wrap;
 
-    > * {
+    >* {
       flex: 1;
     }
   }
 
   .close {
-    /* place-self: center; */
     display: grid;
     grid-template-columns: auto 1fr 1fr auto;
     gap: var(--vinson);
-    /* place-items: ; */
-
-    /* > * {
-      width: 100%;
-    } */
   }
-
-
 
   .spine {
     grid-column: 3;
     writing-mode: vertical-rl;
   }
-
-  /* svg {
-    width: 33%;
-    height: 33%;
-    grid-column: 2;
-  } */
-
-  /* .white {
-    fill: white;
-    filter: blur(var(--woodstar));
-  } */
-
-  /* .cherry {
-    fill: transparent;
-    stroke: var(--cherry-100);
-    stroke-width: var(--woodstar);
-    filter: blur(var(--kosciuszko));
-    padding-inline-start: var(--woodstar);
-    padding-block-start: var(--woodstar);
-  } */
-
-  /* .headshot {
-    grid-column: 2;
-    grid-row: 1;
-    aspect-ratio: 16/9;
-  } */
 }
 
 .gutter-spread {
@@ -154,6 +132,7 @@ main {
     grid-column: 2;
     margin: initial;
   }
+
   .two {
     justify-self: start;
     grid-column: 3;
@@ -164,41 +143,6 @@ main {
     grid-column: 4;
   }
 }
-
-/*------------------------------------*/
-/* #Spine Border */
-/*------------------------------------*/
-
-/* .spine-border {
-  width: var(--vinson);
-  grid-row: 1/3;
-  grid-column: 1;
-  over the top of categories on single
-  z-index: var(--understory);
-  justify-self: end;
-
-  @media (min-width: 40rem) {
-    justify-self: start; 
-    categories takes up that space as well
-  }
-} */
-
-/* even tho these are the same the names help keep them seperate */
-/* .single .spine-border,
-.category .spine-border {
-  image : header : date : content
-  grid-row: 1/5;
-  grid-column: 1;
-  I think this is a browser default
-  justify-self: start;
-
-  @media (min-width: 40rem) {
-    grid-row: 1/4; 
-    what are the 6: header : date : content
-    justify-self: start; 
-    categories takes up that space as well
-  }
-} */
 
 .passage {
   max-width: var(--pelican);
@@ -212,7 +156,7 @@ main {
   max-width: var(--pelican);
   flex-flow: row wrap;
 
-  > * {
+  >* {
     flex: 1 1 calc(var(--vulture) - var(--denali));
   }
 }
@@ -228,8 +172,10 @@ main {
   justify-self: center;
 
   @media (min-width: 40rem) {
-    align-self: end; /* this is for when the menu is horizontal on single pages */
-    grid-column: 5; /* category */
+    align-self: end;
+    /* this is for when the menu is horizontal on single pages */
+    grid-column: 5;
+    /* category */
   }
 }
 
@@ -249,6 +195,7 @@ main {
 .home .header-logo svg {
   transition: var(--global-transition);
 }
+
 .home .header-logo svg:hover {
   background: var(--kingly-cloud);
 }
@@ -264,6 +211,7 @@ main {
   /* TODO: @extend was sass @extend .color-blocking; */
   grid-row: 2;
   grid-column: 2;
+
   @media (min-width: 40rem) {
     grid-row: 1 / 4;
     grid-column: 3;
@@ -283,7 +231,8 @@ main {
     flex-direction: row;
 
     h1 {
-      margin-bottom: 0; /* help these align */
+      margin-bottom: 0;
+      /* help these align */
     }
   }
 }
@@ -295,7 +244,8 @@ main {
 .site-branding-text {
   grid-row: 2;
   grid-column: 2;
-  z-index: 20; /* TODO: */
+  z-index: 20;
+  /* TODO: */
 
   @media (min-width: 40rem) {
     writing-mode: vertical-rl;
@@ -392,6 +342,7 @@ main {
 
 .single #top-menu {
   margin: 0;
+
   @media (min-width: 40rem) {
     display: flex;
     flex-direction: row;
@@ -510,10 +461,10 @@ main {
   display: block;
 }
 
-.article-thumbnail > a > img,
-.category-thumbnail > a > img,
-.article-thumbnail > a > picture,
-.category-thumbnail > a > picture {
+.article-thumbnail>a>img,
+.category-thumbnail>a>img,
+.article-thumbnail>a>picture,
+.category-thumbnail>a>picture {
   width: 100%;
 }
 
@@ -537,7 +488,8 @@ main {
 
   @media (min-width: 40rem) {
     grid-column: 2 / 6;
-    grid-row: 2; /* this is a repeat of above */
+    grid-row: 2;
+    /* this is a repeat of above */
   }
 }
 
@@ -552,7 +504,7 @@ main {
   }
 }
 
-.article-speechbubble > .speeechbubble {
+.article-speechbubble>.speeechbubble {
   margin-bottom: var(--vinson);
 }
 
@@ -596,7 +548,8 @@ main {
 
 .single .article-category {
   @media (min-width: 40rem) {
-    grid-row: 1 / 4; /* header : date : content */
+    grid-row: 1 / 4;
+    /* header : date : content */
     align-self: start;
     grid-column: 1;
   }
@@ -683,6 +636,7 @@ TODO: media variables are sass
 /* can the next few items be written nicer? */
 .post-navigation {
   grid-column: 2 / 5;
+
   @media (min-width: 40rem) {
     grid-column: 2;
   }
@@ -702,6 +656,7 @@ TODO: media variables are sass
 
 .article-tags {
   grid-column: 2 / 5;
+
   @media (min-width: 40rem) {
     grid-column: 4;
   }
@@ -850,9 +805,10 @@ TODO: media variables are sass
   margin: 0;
 }
 
-.post-categories > li {
+.post-categories>li {
   @media (min-width: 40rem) {
-    margin-bottom: 0; /* vertical text doesnt need a margin below */
+    margin-bottom: 0;
+    /* vertical text doesnt need a margin below */
   }
 }
 
@@ -892,7 +848,8 @@ TODO: media variables are sass
     grid-row: 1;
     writing-mode: vertical-rl;
     text-decoration: line-through;
-    margin: 0; /* vertical text doesnt have regular margins */
+    margin: 0;
+    /* vertical text doesnt have regular margins */
   }
 }
 
@@ -947,6 +904,7 @@ TODO: media variables are sass
 }
 
 .gr-1-m {
+
   /* this is really different from other classes? */
   @media (min-width: 40rem) {
     grid-row: 1;
@@ -1043,14 +1001,16 @@ TODO: media variables are sass
 .footer_1 {
   @media (min-width: 40rem) {
     grid-row: 1;
-    grid-column: 1/3; /* hide a grid-gap that is otherwise white */
+    grid-column: 1/3;
+    /* hide a grid-gap that is otherwise white */
   }
 }
 
 .footer_5 {
   @media (min-width: 40rem) {
     grid-row: 1;
-    grid-column: 4/6; /* hide a grid-gap that is otherwise white */
+    grid-column: 4/6;
+    /* hide a grid-gap that is otherwise white */
   }
 }
 
@@ -1059,22 +1019,26 @@ TODO: media variables are sass
   https://css-tricks.com/responsive-iframes/
 \*------------------------------------*/
 
-[style*="--aspect-ratio"] > :first-child {
+[style*="--aspect-ratio"]> :first-child {
   width: 100%;
 }
-[style*="--aspect-ratio"] > img {
+
+[style*="--aspect-ratio"]>img {
   height: auto;
 }
+
 @supports (--custom: property) {
   [style*="--aspect-ratio"] {
     position: relative;
   }
+
   [style*="--aspect-ratio"]::before {
     content: "";
     display: block;
     padding-bottom: calc(100% / (var(--aspect-ratio)));
   }
-  [style*="--aspect-ratio"] > :first-child {
+
+  [style*="--aspect-ratio"]> :first-child {
     position: absolute;
     top: 0;
     left: 0;
@@ -1112,8 +1076,10 @@ TODO: media variables are sass
 .base-next__grid {
   display: grid;
 
-  a, /* the image */
-  h4, /* the title */
+  a,
+  /* the image */
+  h4,
+  /* the title */
   .color-blocking {
     grid-row: 1;
     grid-column: 1;
@@ -1143,7 +1109,7 @@ TODO: media variables are sass
   grid-gap: 1em;
 }
 
-.social-icons > .fp-box > a {
+.social-icons>.fp-box>a {
   display: inline-block;
 }
 

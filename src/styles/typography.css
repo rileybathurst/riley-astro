@@ -15,7 +15,8 @@ h4,
 h5,
 h6,
 p {
-  margin-block-start: 0; /* browser reset */
+  margin-block-start: 0;
+  /* browser reset */
 }
 
 h1 {
@@ -45,8 +46,10 @@ p {
 }
 
 p {
-  margin-top: 0; /* browser reset */
-  margin-bottom: var(--kilimanjaro); /* browser reset */
+  margin-top: 0;
+  /* browser reset */
+  margin-bottom: var(--kilimanjaro);
+  /* browser reset */
 }
 
 small,
@@ -56,7 +59,8 @@ small,
 
 .storybook-selection,
 ::selection {
-  background: var(--cherry-100); /* WebKit/Blink Browsers */
+  background: var(--cherry-100);
+  /* WebKit/Blink Browsers */
 }
 
 address {
@@ -82,6 +86,7 @@ hr {
 blockquote {
   margin: 0;
   color: var(--black-metal);
+
   @media (prefers-color-scheme: dark) {
     color: var(--brilliance);
   }
@@ -115,8 +120,10 @@ cite {
   margin-bottom: var(--kilimanjaro);
   /* I was having problems on small screens citing urls */
   word-break: break-all;
+
   @media (min-width: 40rem) {
-    word-break: normal; /* revert back when the small problem doesnt exsist */
+    word-break: normal;
+    /* revert back when the small problem doesnt exsist */
   }
 }
 
@@ -189,18 +196,12 @@ A11y Accessibility
 /*------------------------------------*/
 
 .riley {
-  /* guess and check */
   font-size: 31.4vw;
   color: var(--cherry-100);
 }
 
 .bathurst {
-  /* guess and check */
-  font-size: 17vw;
   color: white;
-  /* ? does this need non webkit? */
-  -webkit-text-stroke: 0var (--denali) var(--cherry-100);
-  /* TODO: dark */
 }
 
 /*------------------------------------*/
@@ -252,7 +253,8 @@ A11y Accessibility
   text-align: center;
 
   @media (min-width: 40rem) {
-    font-size: 6em; /* ? this is really large? */
+    font-size: 6em;
+    /* ? this is really large? */
   }
 }
 

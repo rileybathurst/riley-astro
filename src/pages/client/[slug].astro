@@ -1,57 +1,62 @@
 ---
 import Layout from "../../components/layout.astro";
 import fetchApi from "../../lib/strapi";
+import { Image } from "astro:assets";
 
 type clientTypes = {
-    name: string;
+  name: string;
+  slug: string;
+  role: string;
+  projects: {
+    title: string;
     slug: string;
-    role: string;
-    projects: {
-        title: string;
-        slug: string;
-    }[];
+  }[];
+  hero: {
+    url: string;
+  };
 };
 
 export async function getStaticPaths() {
-    const clients = await fetchApi<clientTypes[]>({
-        endpoint: "clients", // the content type to fetch
-        wrappedByKey: "data", // the key to unwrap the response
-        fields: ["projects"],
-    });
+  const clients = await fetchApi<clientTypes[]>({
+    endpoint: "clients", // the content type to fetch
+    fields: ["projects", "hero"],
+  });
 
-    return clients.map((client) => ({
-        params: { slug: client.slug },
-        props: client,
-    }));    
+  return clients.map((client) => ({
+    params: { slug: client.slug },
+    props: client,
+  }));
 }
 
 const client = Astro.props;
 
+console.log(client);
 ---
 
-<Layout 
-    title={client.name}
-    breadcrumbs={[{ title: "Client", slug: "client" }]}
+<Layout
+  title={client.name}
+  breadcrumbs={[{ title: "Client", slug: "client" }]}
+  hero={client.hero.url}
 >
-    <main>
-        <h1>{client.name}</h1>
+  <main>
+    <h1>{client.name}</h1>
 
-        <h2>Role - {client.role}</h2>
+    <h2>Role - {client.role}</h2>
 
-        <hr />
+    <hr />
 
-        <h2>Projects</h2>
-        <section>     
-                {client.projects.map((project) => (
-                    <article>
-                        <h3>
-                            {/* // TODO: Figure out the slug of a project, if its behind a client but some dont have clients  */}
-                            <a href={`/project/${project.slug}`}>
-                                {project.title}
-                            </a>
-                        </h3>
-                    </article>
-                ))}
-        </section>
-    </main>
+    <h2>Projects</h2>
+    <section>
+      {
+        client.projects.map((project) => (
+          <article>
+            <h3>
+              {/* // TODO: Figure out the slug of a project, if its behind a client but some dont have clients  */}
+              <a href={`/project/${project.slug}`}>{project.title}</a>
+            </h3>
+          </article>
+        ))
+      }
+    </section>
+  </main>
 </Layout>
