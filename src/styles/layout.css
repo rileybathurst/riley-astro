@@ -127,6 +127,15 @@ main {
     grid-column: 3;
     writing-mode: vertical-rl;
   }
+
+  /* TODO: sort the aspect ratio its probably js to the height of the image? */
+  #overlay {
+    grid-column: 2;
+    width: 100%;
+    height: auto;
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+  }
 }
 
 .gutter-spread {

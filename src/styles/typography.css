@@ -68,9 +68,11 @@ address {
   font-style: unset;
 }
 
-.storybook-code_font,
-code {
-  font-family: var(--code-font);
+code,
+.mono-font,
+.storybook-code_font {
+  font-family: var(--mono-font);
+  font-variation-settings: "MONO" 0, "wght" 400;
   white-space: break-spaces;
   background: var(--neutral-100);
   padding: var(--vinson);
@@ -266,7 +268,7 @@ A11y Accessibility
 }
 
 .primary-menu .qualifier {
-  font-family: var(--code-font);
+  font-family: var(--mono-font);
   font-size: var(--vinson);
   font-weight: 400;
   margin-left: var(--vinson);

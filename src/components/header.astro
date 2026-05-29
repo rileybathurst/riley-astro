@@ -2,6 +2,7 @@
 import fetchApi from "../lib/strapi";
 import type { AboutType } from "../types/about-type";
 import { Image } from "astro:assets";
+import Overlay from "../svg/overlay.astro";
 
 const about: AboutType = await fetchApi({
   endpoint: "about", // the content type to fetch
@@ -19,7 +20,7 @@ type breadcrumbTypes = {
 ---
 
 <header class="gutters">
-  <div class="breadcrumbs">
+  <div class="breadcrumbs mono-font">
     <a href="/" class="fore">
       {about.name}
     </a>
@@ -27,7 +28,7 @@ type breadcrumbTypes = {
     {
       Astro.props.breadcrumbs &&
         Astro.props.breadcrumbs.map((breadcrumb: breadcrumbTypes) => (
-          <div class="fore">
+          <div class="fore mono-font">
             <span>&emsp;|&emsp;</span>
             <a href={"/" + breadcrumb.slug}>{breadcrumb.title}</a>
           </div>
@@ -36,7 +37,7 @@ type breadcrumbTypes = {
 
     {
       Astro.props.title && (
-        <div class="fore">
+        <div class="fore mono-font">
           &emsp;|&emsp;
           {Astro.props.title}
         </div>
@@ -44,11 +45,11 @@ type breadcrumbTypes = {
     }
   </div>
   <!-- TODO: move the tag line to astro -->
-  <div class="spine">PUSHING PIXELS</div>
+  <div class="spine mono-font">PUSHING PIXELS</div>
 
   <section class="cover split">
     <article>
-      <h1 class="riley understory">
+      <h1 class="riley understory mono-font">
         <a href="/">
           {about.name.split(" ")[0]}
         </a>
@@ -67,4 +68,6 @@ type breadcrumbTypes = {
       class="headshot"
     />
   </section>
+
+  <Overlay />
 </header>
