@@ -11,7 +11,8 @@
   grid-gap: var(--vinson);
 
   @media (min-width: 40rem) {
-    grid-template-rows: var(--denali) 1fr var(--denali); /* keep it tight up top with the header-logo */
+    grid-template-rows: var(--denali) 1fr var(--denali);
+    /* keep it tight up top with the header-logo */
     grid-template-columns: var(--denali) 1fr 1fr 1fr var(--denali);
   }
 }
@@ -37,6 +38,9 @@
   grid-row: 2 / 4;
   writing-mode: vertical-rl;
   justify-self: center;
+  align-self: end;
+
+  display: flex;
 }
 
 .single .breadcrumbs {

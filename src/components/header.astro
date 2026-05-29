@@ -46,21 +46,25 @@ type breadcrumbTypes = {
   <!-- TODO: move the tag line to astro -->
   <div class="spine">PUSHING PIXELS</div>
 
-  <h1 class="cover riley understory">
-    <a href="/">
-      {about.name.split(" ")[0]}
-    </a>
-  </h1>
+  <section class="cover split">
+    <article>
+      <h1 class="riley understory">
+        <a href="/">
+          {about.name.split(" ")[0]}
+        </a>
+      </h1>
 
-  <h2 class="cover understory bathurst">
-    {about.name.split(" ")[1]}
-  </h2>
+      <h2 class="understory bathurst">
+        {about.name.split(" ")[1]}
+      </h2>
+    </article>
 
-  <Image
-    src={Astro.props.hero || about.profile.url}
-    width={about.profile.imageWidth || 1200}
-    height={about.profile.imageHeight || 600}
-    alt={about.profile.alternativeText || about.name}
-    class="headshot cover"
-  />
+    <Image
+      src={Astro.props.hero || about.profile.url}
+      width={about.profile.imageWidth || 1200}
+      height={about.profile.imageHeight || 600}
+      alt={about.profile.alternativeText || about.name}
+      class="headshot"
+    />
+  </section>
 </header>

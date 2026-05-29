@@ -24,7 +24,8 @@ li {
   /* this has to be a padding otherwise you loose the hr on scroll between */
   padding-block-start: var(--vinson);
   margin-block-end: 0;
-  list-style: none; /* this seems like its doubling down on .menu but was needed */
+  list-style: none;
+  /* this seems like its doubling down on .menu but was needed */
 
   @media (min-width: 40rem) {
     font-size: var(--aconcagua);
@@ -49,7 +50,7 @@ li {
   a {
     font-weight: bold;
     background: var(--cherry-100);
-    color: var(--brilliance);
+    color: var(--neutral-100);
     padding: var(--vinson);
     display: block;
     text-decoration: none;
@@ -64,7 +65,7 @@ li {
 .footer_menu li {
   a {
     background: var(--cherry-100);
-    color: var(--brilliance);
+    color: var(--neutral-100);
     padding: var(--vinson);
     text-decoration: none;
     /* fill the box */

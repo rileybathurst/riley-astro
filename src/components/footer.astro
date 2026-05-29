@@ -7,49 +7,36 @@ const about: AboutType = await fetchApi({
   more: false,
 });
 
-// console.log(about);
-
 import Instagram from "../svg/instagram.astro";
 import LinkedIn from "../svg/linkedin.astro";
 import GitHub from "../svg/github.astro";
 import Phone from "./phone.astro";
 ---
 
-<footer class="site-footer">
-  <div class="footer_info">
-    <div class="footer_copyright">
-      <ul>
-        <li>
-          <a href="/" rel="home">Home</a>
-        </li>
-        <li>
-          {about.established} - {new Date().getFullYear()}
-        </li>
-        <li>
-          <a href="/now">Now</a>
-        </li>
-      </ul>
-    </div>{/* .footer_copyright */}
+<footer class="gutters">
+  <section class="cover quartered">
+    <ul>
+      <li>
+        <a href="/" rel="home">Home</a>
+      </li>
+      <li>
+        {about.established} - {new Date().getFullYear()}
+      </li>
+      <li>
+        <a href="/now">Now</a>
+      </li>
+    </ul>
 
     <nav id="bottom-menu" class="">
       <ul>
-        {/* // TODO need to build search */}
-        {/* <li key="search"><Link to='/search'>Search</Link></li> */}
-        <li><a href="/project">Projects</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li>
-          <a href="/styleguide">Styleguides</a>
-        </li>
+        <li><a href="/client">Clients</a></li>
         <li>
           <a href="/budget">Budget</a>
         </li>
-        {
-          /* I can do something more interesting with this as a show whats available maybe an accordian or work in with what I already have */
-        }
+        <li><a href="/blog">Blog</a></li>
       </ul>
     </nav>
 
-    {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address */}
     <address class="footer_contact">
       {/* // TODO: add some more details to this ie subject */}
       <p>
@@ -61,32 +48,17 @@ import Phone from "./phone.astro";
         <Phone phone={about.phone} />
       </p>
     </address>
-  </div>
 
-  <div class="background-primary background-primary__social-icons">
-    <div class="social-icons">
-      <div class="fp-box">
-        <a href={`https://www.instagram.com/${about.instagram}/`}>
-          <Instagram />
-        </a>
-      </div>
-      <div class="fp-box">
-        <a href={`https://www.linkedin.com/in/${about.linkedin}/`}>
-          <LinkedIn />
-        </a>
-      </div>
-      {/* // TODO: add a link to /rss.xml */}
-      <div>
-        <!-- <a href="/rss.xml"> -->
-        {/* // TODO: this doesnt work yet */}
-        <!-- <RSS /> -->
-        <!-- </a> -->
-      </div>
-      <div class="fp-box">
-        <a href={`https://github.com/${about.github}/`}>
-          <GitHub />
-        </a>
-      </div>
+    <div class="background-primary quartered social-icons">
+      <a href={`https://www.instagram.com/${about.instagram}/`}>
+        <Instagram />
+      </a>
+      <a href={`https://www.linkedin.com/in/${about.linkedin}/`}>
+        <LinkedIn />
+      </a>
+      <a href={`https://github.com/${about.github}/`}>
+        <GitHub />
+      </a>
     </div>
-  </div>
+  </section>
 </footer>

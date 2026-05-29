@@ -7,26 +7,14 @@
   /* #COLORS */
   /*------------------*/
 
-  /* louie change */
-  --pitch: 2.5%;
-  --dark: 12.5%;
-  --dull: 25%;
-  --dim: 37.5%;
-  --mid: 50%;
-  --glow: 62.5%;
-  --light: 75%;
-  --bright: 87.5%;
-  --brilliant: 97.5%;
-
-  --black-metal: hsl(0, 0%, 2.5%);
-  --black-out: hsl(0, 0%, 12.5%);
-  --raven-black: hsl(0, 0%, 25%);
-  --industrial-revolution: hsl(0, 0%, 37.5%);
-  /* grey */
-  --cold-grey: hsl(0, 0%, 62.5%);
-  --tin-soldier: hsl(0, 0%, 75%);
-  --kingly-cloud: hsl(0, 0%, 87.5%);
-  --brilliance: hsl(0, 0%, 97.5%);
+  --neutral-100: hsl(0, 0%, 97.5%);
+  --neutral-200: hsl(0, 0%, 87.5%);
+  --neutral-300: hsl(0, 0%, 75%);
+  --neutral-400: hsl(0, 0%, 62.5%);
+  --neutral-500: hsl(0, 0%, 37.5%);
+  --neutral-600: hsl(0, 0%, 25%);
+  --neutral-700: hsl(0, 0%, 12.5%);
+  --neutral-800: hsl(0, 0%, 2.5%);
 
   --cherry-100: hsl(0, 75%, 50%);
   --cherry-200: hsl(0, 75%, 37.5%);
@@ -48,7 +36,8 @@
   /*------------------*/
 
   --vulture: 10rem;
-  --stork: 18rem; /* 288px */
+  --stork: 18rem;
+  /* 288px */
   /* ? wheres my kinda default phone to ipad size */
   --condor: 30rem;
   --pelican: 50rem;
@@ -70,11 +59,10 @@
   --vinson: 1rem;
   --kosciuszko: 0.75rem;
 
-  /* TODO: Oops wrong metaphor */
   /* https://www.discoverwildlife.com/animal-facts/birds/smallest-birds-in-the-world */
   /* theres a bunch a bunch of hummingbirds */
-  --woodstar: 0.125em;
   --weebill: 0.25em;
+  --woodstar: 0.125em;
 
   /* TODO check the quotes */
   --sans-font: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;

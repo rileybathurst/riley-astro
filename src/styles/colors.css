@@ -2,15 +2,16 @@
 /* #COLORS */
 /*------------------------------------*/
 
-.body, /* storybook */
+.body,
+/* storybook */
 body {
-  border-color: var(--brilliance);
+  border-color: var(--neutral-100);
   margin: 0;
 
   @media (prefers-color-scheme: dark) {
-    background: var(--black-metal);
-    color: var(--brilliance);
-    border-color: var(--black-metal);
+    background: var(--neutral-800);
+    color: var(--neutral-100);
+    border-color: var(--neutral-800);
   }
 }
 
@@ -24,22 +25,23 @@ body {
 }
 
 .background-clean {
-  background: var(--brilliance);
+  background: var(--neutral-100);
+
   @media (prefers-color-scheme: dark) {
-    background: var(--black-metal);
+    background: var(--neutral-800);
   }
 }
 
 .background-dirty {
-  background: var(--kingly-cloud);
+  background: var(--neutral-200);
 
   @media (prefers-color-scheme: dark) {
-    background: var(--black-out);
+    background: var(--neutral-700);
   }
 }
 
-.background-brilliance {
-  background: var(--brilliance);
+.background-neutral-100 {
+  background: var(--neutral-100);
 }
 
 /*------------------------------------*/
@@ -47,7 +49,7 @@ body {
 /*------------------------------------*/
 
 .site-title {
-  color: var(--brilliance);
+  color: var(--neutral-100);
 }
 
 .breacdcrumbs {
@@ -76,11 +78,11 @@ body {
   writing-mode: vertical-rl;
   justify-self: center;
   /* adding this incase we dont have images the text is still visible */
-  /* true black not var(--black-metal) for the screen blend to not show anything */
-  background: var(--black-metal);
+  /* true black not var(--neutral-800) for the screen blend to not show anything */
+  background: var(--neutral-800);
 
   a {
-    color: var(--brilliance);
+    color: var(--neutral-100);
     padding: var(--vinson);
     /* am I sure this is neccessary */
     display: inline-block;
@@ -93,11 +95,12 @@ body {
 
   a {
     padding: initial;
-    color: var(--black-metal);
+    color: var(--neutral-800);
     /* I have the hero underneath which is kinda taking care of this */
     text-decoration: none;
+
     @media (prefers-color-scheme: dark) {
-      color: var(--brilliance);
+      color: var(--neutral-100);
     }
   }
 }
@@ -127,41 +130,55 @@ body {
   }
 
   /* neutrals */
-  .black-metal {
-    background-color: var(--black-metal);
+  .neutral-800 {
+    background-color: var(--neutral-800);
   }
 
-  .black-out {
-    background-color: var(--black-out);
+  .neutral-700 {
+    background-color: var(--neutral-700);
   }
 
-  .raven-black {
-    background-color: var(--raven-black);
+  .neutral-600 {
+    background-color: var(--neutral-600);
   }
 
-  .industrial-revolution {
-    background-color: var(--industrial-revolution);
+  .neutral-500 {
+    background-color: var(--neutral-500);
   }
 
   .grey {
     background-color: grey;
   }
 
-  .cold-grey {
-    background-color: var(--cold-grey);
+  .neutral-400 {
+    background-color: var(--neutral-400);
   }
 
-  .tin-soldier {
-    background-color: var(--tin-soldier);
+  .neutral-300 {
+    background-color: var(--neutral-300);
   }
 
-  .kingly-cloud {
-    background-color: var(--kingly-cloud);
+  .neutral-200 {
+    background-color: var(--neutral-200);
   }
 
-  .brilliance {
-    background-color: var(--brilliance);
+  .neutral-100 {
+    background-color: var(--neutral-100);
   }
 }
 
 /*------------------------------------*/
+/* #BLOCKS */
+/*------------------------------------*/
+
+.blocks li {
+  background-color: var(--cherry-100);
+  background-image: radial-gradient(circle at top left, var(--cherry-100), var(--cherry-300));
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+
+  svg {
+    fill: var(--neutral-100);
+  }
+}

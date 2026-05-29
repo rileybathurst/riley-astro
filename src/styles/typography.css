@@ -72,7 +72,7 @@ address {
 code {
   font-family: var(--code-font);
   white-space: break-spaces;
-  background: var(--brilliance);
+  background: var(--neutral-100);
   padding: var(--vinson);
   line-height: var(--kilimanjaro);
 }
@@ -80,15 +80,15 @@ code {
 hr {
   margin: var(--elbrus) auto;
   border-top: 0;
-  border-bottom: 1px solid var(--tin-soldier);
+  border-bottom: 1px solid var(--neutral-300);
 }
 
 blockquote {
   margin: 0;
-  color: var(--black-metal);
+  color: var(--neutral-800);
 
   @media (prefers-color-scheme: dark) {
-    color: var(--brilliance);
+    color: var(--neutral-100);
   }
 
   /* TODO: type scale */
@@ -148,7 +148,7 @@ A11y Accessibility
 /*------------------------------------*/
 
 .mega-hr {
-  border: var(--kosciuszko) solid var(--brilliance);
+  border: var(--kosciuszko) solid var(--neutral-100);
 
   @media (min-width: 40rem) {
     border-bottom-width: var(--vinson);
@@ -197,6 +197,7 @@ A11y Accessibility
 
 .riley {
   font-size: 31.4vw;
+  margin-block-end: 0;
   color: var(--cherry-100);
 }
 
@@ -226,11 +227,11 @@ A11y Accessibility
 .fp-box {
   /* front page box these are the red areas behind clicks code and camera on the split levels */
   background: var(--cherry-100);
-  color: var(--brilliance);
+  color: var(--neutral-100);
 }
 
 .single .site-title {
-  color: var(--black-metal);
+  color: var(--neutral-800);
 }
 
 .cat-title {

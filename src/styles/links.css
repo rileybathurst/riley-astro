@@ -8,7 +8,7 @@ a:hover {
 }
 
 a::selection {
-  color: var(--brilliance);
+  color: var(--neutral-100);
 }
 
 /*------------------------------------*/
@@ -18,7 +18,7 @@ a::selection {
 }
 
 .page-title a {
-  color: var(--brilliance);
+  color: var(--neutral-100);
 }
 
 .article-footer a,
@@ -52,12 +52,11 @@ a::selection {
 /*------------------------------------*/
 
 .breadcrumbs a {
-  /* TODO dark-gray doesn't pass contrast checks but I didn't want to go all the way to black */
-  color: #575757;
+  color: var(--neutral-600);
   text-decoration: line-through;
 
   @media (prefers-color-scheme: dark) {
-    color: var(--kingly-cloud);
+    color: var(--neutral-200);
   }
 }
 
@@ -87,9 +86,10 @@ a::selection {
   border-bottom: none;
   /* would this have a box shadow? */
   box-shadow: none;
-  color: var(--black-metal);
+  color: var(--neutral-800);
+
   @media (prefers-color-scheme: dark) {
-    color: var(--brilliance);
+    color: var(--neutral-100);
   }
 }
 

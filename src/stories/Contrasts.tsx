@@ -6,7 +6,7 @@ export const Contrasts = () => {
     <>
       Contrasts<br />
       <br />
-      Cherry on Brilliance 4.6:1 AA<br />
+      Cherry on neutral-100 4.6:1 AA<br />
       Cherry on Kingly Cloud 3.6:1 AA Large<br />
       Cherry on Black Out 3.4:1 AA Large
       Cherry on Black Metal 4.10:1 AA Large

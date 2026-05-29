@@ -17,7 +17,7 @@ const clients: clientType[] = await fetchApi({
   endpoint: "clients", // the content type to fetch
   limit: {
     field: "order",
-    number: 10,
+    number: 12,
     order: "asc",
   },
   more: false,
@@ -41,25 +41,31 @@ const about: aboutType = await fetchApi({
 
       <hr />
     </section>
+  </main>
 
-    <section>
-      <h1>
-        <a href="/client">Clients</a>
-      </h1>
-
-      <ul>
-        {
-          clients.map((client: clientType) => (
-            <li>
-              {/* // * in Astro, set:html is the equivalent of React’s dangerouslySetInnerHTML. */}
+  <section class="gutters">
+    <h1 class="fore">
+      <a href="/client">Clients</a>
+    </h1>
+    <ul class="cover blocks">
+      {
+        clients.map((client: clientType) => (
+          <li>
+            {client.svg ? (
+              // * in Astro, set:html is the equivalent of React’s dangerouslySetInnerHTML
               <div set:html={client.svg} aria-hidden="true" />
-              <h2>
+              <h2 class="sr-only">
                 <a href={`/client/${client.slug}`}>{client.name}</a>
               </h2>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-  </main>
+            ) : (
+              <h4>
+                <a href={`/client/${client.slug}`}>{client.name}</a>
+              </h4>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+    <p class="spine">lorem ipsum</p>
+  </section>
 </Layout>

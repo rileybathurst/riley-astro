@@ -20,15 +20,15 @@ function Palette({ palette }: { palette: string }) {
     );
   } else if (palette === "neutrals") {
     let colors = [
-      "black-metal",
-      "black-out",
-      "raven-black",
-      "industrial-revolution",
+      "neutral-800",
+      "neutral-700",
+      "neutral-600",
+      "neutral-500",
       "grey",
-      "cold-grey",
-      "tin-soldier",
-      "kingly-cloud",
-      "brilliance"
+      "neutral-400",
+      "neutral-300",
+      "neutral-200",
+      "neutral-100"
     ];
     return (
       <div className="palette">

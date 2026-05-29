@@ -11,7 +11,7 @@ button,
   margin-bottom: var(--vinson);
   background: var(--cherry-100);
   border: none;
-  color: var(--brilliance);
+  color: var(--neutral-100);
   font-weight: bold;
   /* TODO: type scale */
   font-size: 1.5em;

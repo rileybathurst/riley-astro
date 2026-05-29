@@ -42,7 +42,12 @@ const project = Astro.props;
 >
   <main>
     <h1>{project.title}</h1>
-    <h2>Client - {project.client?.name}</h2>
+    <h2>
+      Client -
+      <a href={`/client/${project.client?.slug}`}>
+        {project.client?.name}
+      </a>
+    </h2>
 
     <!-- {project.embed} -->
     <a href={project.link}>{project.link}</a>

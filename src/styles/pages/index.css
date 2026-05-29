@@ -6,7 +6,7 @@
   margin-block-end: var(--everest);
 
   article {
-    background: var(--kingly-cloud);
+    background: var(--neutral-200);
     max-width: var(--albatross);
     margin-inline: auto;
     display: grid;
