@@ -1,6 +1,10 @@
 ---
 import Layout from "../../components/layout.astro";
 import fetchApi from "../../lib/strapi";
+import {
+  BlocksRenderer,
+  type BlocksContent,
+} from "@strapi/blocks-react-renderer";
 
 // import { YouTube } from 'astro-embed';
 
@@ -13,13 +17,14 @@ type projectTypes = {
   };
   embed?: string;
   link?: string;
+  description: BlocksContent;
 };
 
 export async function getStaticPaths() {
   const projects = await fetchApi<projectTypes[]>({
     endpoint: "projects", // the content type to fetch
 
-    fields: ["client"],
+    fields: ["client", "trades"],
     // more: true,
   });
 
@@ -32,6 +37,7 @@ export async function getStaticPaths() {
 const project = Astro.props;
 ---
 
+<!-- TODO: --><!-- platforms --><!-- tools --><!-- trades -->
 <Layout
   title={project.title}
   breadcrumbs={[
@@ -40,29 +46,56 @@ const project = Astro.props;
       ? [{ title: project.client.name, slug: project.client.slug }]
       : []),
   ]}
+  embed={project.embed}
 >
   <main>
-    <h1>{project.title}</h1>
-    <h2>
-      Client -
-      <a href={`/client/${project.client?.slug}`}>
-        {project.client?.name}
-      </a>
-    </h2>
+    <section class="cover split">
+      <div>
+        <h1>{project.title}</h1>
+        <h2>
+          Client -
+          <a href={`/client/${project.client?.slug}`}>
+            {project.client?.name}
+          </a>
+        </h2>
+        {
+          project.link && (
+            <p>
+              <a href={project.link}>{project.link}</a>
+            </p>
+          )
+        }
 
-    <!-- {project.embed} -->
-    <a href={project.link}>{project.link}</a>
+        {
+          project.trades && (
+            <p>
+              Trades:{" "}
+              {project.trades.map((trade) => (
+                <span>{trade.name} </span>
+              ))}
+            </p>
+          )
+        }
 
-    {
-      (() => {
-        const url = project.link;
-        if (!url || !url.includes("youtube")) return null;
-        const match = url.match(
-          /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/,
-        );
-        if (!match) return null;
-        // return <YouTube id={match[1]} />;
-      })()
-    }
+        <BlocksRenderer content={project.description} />
+      </div>
+
+      <div>
+        <BlocksRenderer content={project.personal} />
+      </div>
+
+      <!--
+      {
+        (() => {
+          const url = project.link;
+          if (!url || !url.includes("youtube")) return null;
+          const match = url.match(
+            /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/,
+          );
+          if (!match) return null;
+          // return <YouTube id={match[1]} />;
+        })()
+      } -->
+    </section>
   </main>
 </Layout>

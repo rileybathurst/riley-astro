@@ -1,14 +1,16 @@
 ---
-import Layout from '../components/layout.astro';
+import Layout from "../components/layout.astro";
+const { pathname } = Astro.url;
 ---
 
-<Layout>
-        <main>
-            <h1>Page not found</h1>
-            <p>
-                Sorry 😔, we couldn&apos;t find what you were looking for.
-                <br />
-                <a href="/">Go home</a>.
-            </p>
-        </main>
+<Layout title="Page not found">
+  <main>
+    <h1 class="fore">Page not found: {pathname}</h1>
+
+    <p>
+      Sorry 😔, we couldn&apos;t find what you were looking for.
+      <br />
+      <a href="/">Go home</a>.
+    </p>
+  </main>
 </Layout>

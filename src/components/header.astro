@@ -17,17 +17,20 @@ type breadcrumbTypes = {
   title: string;
   slug: string;
 };
+
+const { pathname } = Astro.url;
 ---
 
 <header class="gutters">
-  <div class="fore breadcrumbs mono-font">
+  <!-- TODO: the more pieces here the smaller the text can be this is quite large -->
+  <div class="fore breadcrumbs">
     <a href="/" class="">
       {about.name}
     </a>
     {
       Astro.props.breadcrumbs &&
         Astro.props.breadcrumbs.map((breadcrumb: breadcrumbTypes) => (
-          <div class="fore mono-font">
+          <div class="fore">
             <span>&emsp;|&emsp;</span>
             <a href={"/" + breadcrumb.slug}>{breadcrumb.title}</a>
           </div>
@@ -36,7 +39,7 @@ type breadcrumbTypes = {
 
     {
       Astro.props.title && (
-        <div class="fore mono-font">&emsp;|&emsp;{Astro.props.title}</div>
+        <div class="fore">&emsp;|&emsp;{Astro.props.title}</div>
       )
     }
   </div>
@@ -44,25 +47,36 @@ type breadcrumbTypes = {
   <div class="spine mono-font">PUSHING PIXELS</div>
 
   <section class="cover split">
-    <article class="full">
-      <h1 class="riley understory mono-font">
-        <a href="/">
-          {about.name.split(" ")[0]}
-        </a>
-      </h1>
+    {
+      pathname === "/" ? (
+        <article class="full">
+          <h1 class="riley understory mono-font">
+            <a href="/">{about.name.split(" ")[0]}</a>
+          </h1>
 
-      <h2 class="understory bathurst">
-        {about.name.split(" ")[1]}
-      </h2>
-    </article>
+          <h2 class="understory bathurst">{about.name.split(" ")[1]}</h2>
+        </article>
+      ) : (
+        <article class="full">
+          {/* ? this is very maybe at best */}
+          <h1 class="mono-font">{Astro.props.title}</h1>
+        </article>
+      )
+    }
 
-    <Image
-      src={Astro.props.hero || about.profile.url}
-      width={about.profile.imageWidth || 1200}
-      height={about.profile.imageHeight || 600}
-      alt={about.profile.alternativeText || about.name}
-      class="col-2 headshot"
-    />
+    {
+      Astro.props.embed ? (
+        <div set:html={Astro.props.embed} aria-hidden="true" />
+      ) : (
+        <Image
+          src={Astro.props.hero || about.profile.url}
+          width={about.profile.imageWidth || 1200}
+          height={about.profile.imageHeight || 600}
+          alt={about.profile.alternativeText || about.name}
+          class="col-2 headshot"
+        />
+      )
+    }
   </section>
 
   <!-- TODO: this needs to take the height from the image -->

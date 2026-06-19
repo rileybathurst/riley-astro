@@ -1,0 +1,19 @@
+---
+import Layout from "../components/layout.astro";
+---
+
+<Layout>
+  <main class="gutters">
+    <h1 class="fore">{Astro.props.trail}</h1>
+
+    <section class="cover">
+      {
+        Astro.props.paths.map((path) => (
+          <article class="split">
+            <a href={`/${path.trail}/${path.slug}`}>{path.title}</a>
+          </article>
+        ))
+      }
+    </section>
+  </main>
+</Layout>

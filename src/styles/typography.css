@@ -31,13 +31,13 @@ h2,
 }
 
 h3,
-.denali,
-.fore {
+.denali {
   font-size: var(--denali);
 }
 
 h4,
-.kilimanjaro {
+.kilimanjaro,
+.fore {
   font-size: var(--kilimanjaro);
 }
 
