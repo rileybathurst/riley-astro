@@ -19,29 +19,36 @@ p {
   /* browser reset */
 }
 
-h1 {
+h1,
+.everest {
   margin-top: 0;
   font-size: var(--everest);
 }
 
-h2 {
+h2,
+.aconcagua {
   font-size: var(--aconcagua);
 }
 
-h3 {
+h3,
+.denali,
+.fore {
   font-size: var(--denali);
 }
 
-h4 {
+h4,
+.kilimanjaro {
   font-size: var(--kilimanjaro);
 }
 
-h5 {
+h5,
+.elbrus {
   font-size: var(--elbrus);
 }
 
 h6,
-p {
+p,
+.vinson {
   font-size: var(--vinson);
 }
 
@@ -74,8 +81,6 @@ code,
   font-family: var(--mono-font);
   font-variation-settings: "MONO" 0, "wght" 400;
   white-space: break-spaces;
-  background: var(--neutral-100);
-  padding: var(--vinson);
   line-height: var(--kilimanjaro);
 }
 
@@ -198,6 +203,8 @@ A11y Accessibility
 /*------------------------------------*/
 
 .riley {
+  z-index: var(--canopy);
+  mix-blend-mode: multiply;
   font-size: 31.4vw;
   margin-block-end: 0;
   color: var(--cherry-100);

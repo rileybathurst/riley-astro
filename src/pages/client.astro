@@ -1,32 +1,38 @@
 ---
 import Layout from "../components/layout.astro";
-import fetchApi from "../lib/strapi";
+import ClientBlocks from "../components/client-blocks.astro";
 
-type clientTypes = {
-    name: string;
-    slug: string;
-};
-const clients: clientTypes[] = await fetchApi({
-    endpoint: "clients", // the content type to fetch
-    // more: false,
-});
+console.log(import.meta.env.STRAPI_URL);
+console.log("🦄");
+
+// the pagination query was complex so I just pulled it
+// TODO: order
+const url = `${import.meta.env.STRAPI_URL}/api/clients/?pagination[page]=2&pagination[pageSize]=12}`;
+
+console.log(url);
 ---
 
 <Layout title="Clients">
-    <main>
-        <h1>Clients</h1>
-        <hr />
-        <section>
+  <section class="gutters">
+    <h1 class="fore mono-font">Clients</h1>
 
-            {clients.map((client) => 
-        <article>
-                <a href={`/client/${client.slug}`}>
-            {client.name}
-            </a>
+    <ClientBlocks />
+    <!-- TODO -->
+    <!-- <p class="spine">lorem ipsum</p> -->
+  </section>
+
+  <section class="gutters">
+    <section class="cover">
+      <section>
+        <!-- TODO: remove the blocks -->
+        <!-- {
+          clients.map((client) => (
+            <article>
+              <a href={`/client/${client.slug}`}>{client.name}</a>
             </article>
-        
-    )}
+          ))
+        } -->
+      </section>
     </section>
-        <hr />
-    </main>
+  </section>
 </Layout>

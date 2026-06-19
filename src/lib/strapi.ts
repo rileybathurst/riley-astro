@@ -27,6 +27,7 @@ interface StrapiWhere {
 
 type LimitSchema = {
 	field?: string;
+	start?: number;
 	number?: number;
 	order?: "asc" | "desc";
 	where?: StrapiWhere;
@@ -66,7 +67,7 @@ export default async function fetchApi<T>({
 
 	const queryParams: {
 		populate?: string[];
-		pagination?: { pageSize?: number; page?: number };
+		pagination?: { pageSize?: number; page?: number; start?: number };
 		sort?: string;
 		filters?: StrapiWhere;
 	} & Record<string, unknown> = {
@@ -97,6 +98,14 @@ export default async function fetchApi<T>({
 		};
 	}
 
+	// ! needs love
+	if (typeof limit?.start === "number") {
+		queryParams.pagination = {
+			...(queryParams.pagination ?? {}),
+			start: limit.start,
+		};
+	}
+
 	if (limit?.field) {
 		queryParams.sort = `${limit.field}:${limit.order ?? "asc"}`;
 	}
@@ -115,7 +124,7 @@ export default async function fetchApi<T>({
 	const queryString = qs.stringify(queryParams, { encodeValuesOnly: true });
 	const url = `${import.meta.env.STRAPI_URL}/api/${endpoint}${queryString ? `?${queryString}` : ""}`;
 
-	console.log(url.toString());
+	// console.log(url.toString());
 
 	// let page = 1;
 

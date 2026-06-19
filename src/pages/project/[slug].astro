@@ -35,6 +35,7 @@ const project = Astro.props;
 <Layout
   title={project.title}
   breadcrumbs={[
+    { title: "Clients", slug: "client" },
     ...(project.client
       ? [{ title: project.client.name, slug: project.client.slug }]
       : []),

@@ -5,23 +5,7 @@ import {
   BlocksRenderer,
   type BlocksContent,
 } from "@strapi/blocks-react-renderer";
-
-type clientType = {
-  id: number;
-  name: string;
-  slug: string;
-  order: number;
-  svg: string;
-};
-const clients: clientType[] = await fetchApi({
-  endpoint: "clients", // the content type to fetch
-  limit: {
-    field: "order",
-    number: 12,
-    order: "asc",
-  },
-  more: false,
-});
+import ClientBlocks from "../components/client-blocks.astro";
 
 type aboutType = {
   id: number;
@@ -35,37 +19,24 @@ const about: aboutType = await fetchApi({
 ---
 
 <Layout>
-  <main>
-    <section>
-      <BlocksRenderer content={about.description} />
-
-      <hr />
+  <main class="gutters">
+    <section class="cover split">
+      <article>
+        <BlocksRenderer content={about.description} />
+        <hr />
+      </article>
     </section>
   </main>
 
+  <!-- TODO: this doesnt quite fit the gutter with clients being too big -->
+  <!-- first idea is on big screens give more space to the gutters -->
   <section class="gutters">
-    <h1 class="fore mono-font">
+    <h1 class="fore denali">
       <a href="/client">Clients</a>
     </h1>
-    <ul class="cover blocks">
-      {
-        clients.map((client: clientType) => (
-          <li>
-            {client.svg ? (
-              // * in Astro, set:html is the equivalent of React’s dangerouslySetInnerHTML
-              <div set:html={client.svg} aria-hidden="true" />
-              <h2 class="sr-only">
-                <a href={`/client/${client.slug}`}>{client.name}</a>
-              </h2>
-            ) : (
-              <h4>
-                <a href={`/client/${client.slug}`}>{client.name}</a>
-              </h4>
-            )}
-          </li>
-        ))
-      }
-    </ul>
+
+    <ClientBlocks />
+    <!-- TODO: -->
     <p class="spine">lorem ipsum</p>
   </section>
 </Layout>

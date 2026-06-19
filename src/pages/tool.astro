@@ -14,10 +14,16 @@ const tools: toolTypes[] = await fetchApi({
 ---
 
 <Layout>
-  <main>
-    <h1>tool</h1>
-    <hr />
-    {tools.map((tool) => <article>{tool.name}</article>)}
-    <hr />
+  <main class="gutters">
+    <h1 class="fore">tool</h1>
+    <ul class="cover">
+      {
+        tools.map((tool) => (
+          <li>
+            <a href={`/tool/${tool.slug}`}>{tool.name}</a>
+          </li>
+        ))
+      }
+    </ul>
   </main>
 </Layout>

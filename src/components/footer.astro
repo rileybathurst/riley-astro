@@ -14,13 +14,14 @@ import Phone from "./phone.astro";
 ---
 
 <footer class="gutters">
+  <div class="fore">
+    <a href="/" rel="home">Home</a>
+  </div>
+
   <section class="cover quartered">
     <ul>
       <li>
-        <a href="/" rel="home">Home</a>
-      </li>
-      <li>
-        {about.established} - {new Date().getFullYear()}
+        <a href="/about">About</a>
       </li>
       <li>
         <a href="/now">Now</a>
@@ -49,7 +50,8 @@ import Phone from "./phone.astro";
       </p>
     </address>
 
-    <div class="background-primary quartered social-icons">
+    <!-- TODO: 3 is the wrong number here it doesnt fit the grid properly -->
+    <div class="blocks">
       <a href={`https://www.instagram.com/${about.instagram}/`}>
         <Instagram />
       </a>
@@ -61,4 +63,10 @@ import Phone from "./phone.astro";
       </a>
     </div>
   </section>
+
+  <div class="spine">
+    <p>
+      {about.established} - {new Date().getFullYear()}
+    </p>
+  </div>
 </footer>

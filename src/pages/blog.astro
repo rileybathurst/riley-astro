@@ -14,16 +14,19 @@ const blogs: blogTypes[] = await fetchApi({
 ---
 
 <Layout>
-  <main>
-    <h1>Blog</h1>
-    <hr />
-    {
-      blogs.map((blog) => (
-        <article>
-          <a href={"/blog/" + blog.slug}>{blog.title}</a>
-        </article>
-      ))
-    }
-    <hr />
+  <main class="gutters">
+    <h1 class="fore">Blog</h1>
+
+    <section class="cover">
+      {
+        blogs.map((blog) => (
+          <article class="split">
+            <a href={"/blog/" + blog.slug}>{blog.title}</a>
+            {/* // ? excerpt */}
+            <div>// TODO: image</div>
+          </article>
+        ))
+      }
+    </section>
   </main>
 </Layout>

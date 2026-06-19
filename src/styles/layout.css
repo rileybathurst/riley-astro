@@ -16,12 +16,6 @@ body {
   }
 }
 
-main {
-  max-width: var(--condor);
-  margin-inline: auto;
-  margin-block: var(--everest);
-}
-
 /*------------------------------------*/
 /* #Singles */
 /*------------------------------------*/
@@ -75,14 +69,21 @@ main {
 /* #Gutters */
 /*------------------*/
 
+main,
 .gutters {
   margin: 0 auto;
   width: 100%;
   max-width: var(--albatross);
   display: grid;
+  place-items: center;
+
   grid-template-columns: var(--denali) 1fr var(--denali);
   gap: var(--vinson);
-  place-items: center;
+
+  @media (min-width: 30rem) {
+    grid-template-columns: var(--everest) 1fr var(--everest);
+    gap: var(--denali);
+  }
 
   >* {
     grid-row: 1;
@@ -92,10 +93,15 @@ main {
   .fore {
     grid-column: 1;
     writing-mode: vertical-rl;
+    /* * overwrites the * */
+    height: auto;
+    justify-self: center;
+    align-self: end;
   }
 
   .cover {
     width: 100%;
+    max-width: revert;
     grid-column: 2;
 
     .single {
@@ -103,9 +109,35 @@ main {
     }
   }
 
-  .cover.split {
+
+  /*------------------*/
+  /* #SPLIT */
+  /*------------------*/
+
+  .cover.split,
+  .cover .split {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: var(--vinson);
+
+    >* {
+      grid-row: 1;
+      width: 100%;
+    }
+
+
+    .full {
+      grid-column: 1 / 3;
+      justify-self: center;
+    }
+
+    .col-1 {
+      grid-column: 1;
+    }
+
+    .col-2 {
+      grid-column: 2;
+    }
   }
 
   .combo {
@@ -135,6 +167,16 @@ main {
     height: auto;
     mix-blend-mode: multiply;
     opacity: 0.5;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .breadcrumbs {
+    display: flex;
+    flex-direction: row;
   }
 }
 
@@ -173,6 +215,8 @@ main {
   >* {
     flex: 1 1 calc(var(--vulture) - var(--denali));
   }
+
+
 }
 
 .layered {
@@ -1106,6 +1150,7 @@ TODO: media variables are sass
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
+  width: 100%;
 }
 
 .social-icons>.fp-box>a {
@@ -1138,12 +1183,61 @@ TODO: media variables are sass
 
 .blocks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(5rem, var(--vulture)));
+  /* * guess and check trying to hold 4 to the cover */
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 7.75rem));
   gap: var(--vinson);
   /* padding: var(--vinson) 0; */
 
   li {
     list-style: none;
     padding: 0;
+  }
+}
+
+
+/*------------------------------------*/
+/* #CODE */
+/*------------------------------------*/
+
+code {
+  padding: var(--vinson);
+  background: var(--neutral-100);
+}
+
+/*------------------------------------*/
+/* #CONTAINER */
+/*------------------------------------*/
+
+.container {
+  display: grid;
+
+  >* {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .upright {
+    writing-mode: vertical-lr;
+    z-index: var(--floor);
+    justify-self: start;
+    font-size: var(--everest);
+    line-height: var(--everest);
+    padding: 0;
+    margin: 0;
+    /* color: var(--neutral-200); */
+
+    /* * condor */
+    @media (min-width: 30rem) {
+      color: var(--neutral-200);
+    }
+  }
+
+
+
+
+  section {
+    max-width: var(--condor);
+    justify-self: center;
+    z-index: var(--understory);
   }
 }

@@ -1,0 +1,41 @@
+---
+import fetchApi from "../lib/strapi";
+type clientType = {
+  id: number;
+  name: string;
+  slug: string;
+  order: number;
+  svg: string;
+};
+const clients: clientType[] = await fetchApi({
+  endpoint: "clients", // the content type to fetch
+  limit: {
+    field: "order",
+    number: 8,
+    order: "asc",
+  },
+  more: false,
+});
+---
+
+<ul class="cover blocks">
+  {clients.map((client: clientType) => (
+    <li>
+      <a href={`/client/${client.slug}`}
+      >
+      {client.svg ? (
+        // * in Astro, set:html is the equivalent of React’s dangerouslySetInnerHTML
+        <div set:html={client.svg} aria-hidden="true" />
+        <h2 class="sr-only">
+          <a href={`/client/${client.slug}`}>{client.name}</a>
+        </h2>
+      ) : (
+        <h4>
+          <a href={`/client/${client.slug}`}>{client.name}</a>
+        </h4>
+      )}
+      </a>
+    </li>
+    ))
+  }
+</ul>

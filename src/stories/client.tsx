@@ -1,6 +1,7 @@
 // this is the Page.tsx file
 import { Footer } from './footer';
 import { Header } from './header';
+import { faker } from '@faker-js/faker';
 
 export const Client = () => {
 
@@ -9,14 +10,22 @@ export const Client = () => {
             <Header />
             <div className='gutters'>
                 <main
-                    className='cover'
-                    style={{
-                        backgroundColor: 'blue'
-                    }}
+                    className='cover container'
                 >
-                    test
+                    <h1 className="upright">Clients</h1>
+                    <section>
+                        <ul>
+                            {Array.from({ length: 10 }).map(() => (
+                                <li>
+                                    <a href={faker.internet.url()}>
+                                        {faker.company.name()}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
                 </main>
-            </div>
+            </div >
             <Footer />
         </>
     );

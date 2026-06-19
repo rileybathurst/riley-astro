@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "fullstart": "stay-gold && npm run astro check && astro dev",
     "dev": "stay-gold && npm run astro check && astro dev",
+    "dirty": "astro dev",
     "build": "npm run stay-gold && npm run astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -24,7 +26,7 @@
     "qs": "^6.14.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "stay-gold": "^1.1.5",
+    "stay-gold": "^1.5.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {

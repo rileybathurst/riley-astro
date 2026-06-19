@@ -1,0 +1,37 @@
+---
+import Layout from "../../components/layout.astro";
+import fetchApi from "../../lib/strapi";
+import {
+  BlocksRenderer,
+  type BlocksContent,
+} from "@strapi/blocks-react-renderer";
+
+type toolTypes = {
+  name: string;
+  description: BlocksContent;
+  thoughts: BlocksContent;
+  slug: string;
+};
+
+export async function getStaticPaths() {
+  const tools = await fetchApi<toolTypes[]>({
+    endpoint: "tool",
+  });
+
+  return tools.map((tool) => ({
+    params: { slug: tool.slug },
+    props: tool,
+  }));
+}
+const tool = Astro.props;
+---
+
+<Layout>
+  <main class="gutters">
+    <h1 class="fore">{tool.name}</h1>
+    <article class="cover split">
+      <BlocksRenderer content={tool.description} />
+      <BlocksRenderer content={tool.thoughts} />
+    </article>
+  </main></Layout
+>

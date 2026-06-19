@@ -4,7 +4,7 @@ import React from 'react';
 export const Footer = () => {
 
     return (
-        <footer className="site-footer">
+        <footer className="">
             <div className="footer_info">
                 <div className="footer_copyright">
                     <ul>

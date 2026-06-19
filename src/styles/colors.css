@@ -181,4 +181,8 @@ body {
   svg {
     fill: var(--neutral-100);
   }
+
+  a {
+    color: var(--neutral-100);
+  }
 }

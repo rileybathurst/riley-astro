@@ -20,11 +20,10 @@ type breadcrumbTypes = {
 ---
 
 <header class="gutters">
-  <div class="breadcrumbs mono-font">
-    <a href="/" class="fore">
+  <div class="fore breadcrumbs mono-font">
+    <a href="/" class="">
       {about.name}
     </a>
-
     {
       Astro.props.breadcrumbs &&
         Astro.props.breadcrumbs.map((breadcrumb: breadcrumbTypes) => (
@@ -37,10 +36,7 @@ type breadcrumbTypes = {
 
     {
       Astro.props.title && (
-        <div class="fore mono-font">
-          &emsp;|&emsp;
-          {Astro.props.title}
-        </div>
+        <div class="fore mono-font">&emsp;|&emsp;{Astro.props.title}</div>
       )
     }
   </div>
@@ -48,7 +44,7 @@ type breadcrumbTypes = {
   <div class="spine mono-font">PUSHING PIXELS</div>
 
   <section class="cover split">
-    <article>
+    <article class="full">
       <h1 class="riley understory mono-font">
         <a href="/">
           {about.name.split(" ")[0]}
@@ -65,9 +61,12 @@ type breadcrumbTypes = {
       width={about.profile.imageWidth || 1200}
       height={about.profile.imageHeight || 600}
       alt={about.profile.alternativeText || about.name}
-      class="headshot"
+      class="col-2 headshot"
     />
   </section>
 
-  <Overlay />
+  <!-- TODO: this needs to take the height from the image -->
+  <div id="overlay" style={`height: ${about.profile.imageHeight || 600}px`}>
+    <Overlay />
+  </div>
 </header>

@@ -30,30 +30,30 @@ export async function getStaticPaths() {
 const client = Astro.props;
 ---
 
+<!-- ! breadcrumbs needs love -->
 <Layout
   title={client.name}
   breadcrumbs={[{ title: "Client", slug: "client" }]}
   hero={client.hero?.url}
 >
-  <main>
-    <h1>{client.name}</h1>
+  <main class="gutters">
+    <!-- <h1 class="fore">{client.name}</h1> -->
 
-    <h2>Role - {client.role}</h2>
-
-    <hr />
-
-    <h2>Projects</h2>
-    <section>
-      {
-        client.projects.map((project) => (
-          <article>
-            <h3>
-              {/* // TODO: Figure out the slug of a project, if its behind a client but some dont have clients  */}
-              <a href={`/project/${project.slug}`}>{project.title}</a>
-            </h3>
-          </article>
-        ))
-      }
+    <section class="cover split">
+      {client.role && <h2>Role - {client.role}</h2>}
+      <div>
+        <h2>Projects</h2>
+        {
+          client.projects.map((project) => (
+            <article>
+              <h3>
+                {/* // TODO: Figure out the slug of a project, if its behind a client but some dont have clients  */}
+                <a href={`/project/${project.slug}`}>{project.title}</a>
+              </h3>
+            </article>
+          ))
+        }
+      </div>
     </section>
   </main>
 </Layout>

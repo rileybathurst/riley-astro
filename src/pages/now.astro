@@ -1,5 +1,6 @@
 ---
 import Layout from "../components/layout.astro";
+import { formatDate } from "../components/format-date";
 
 import {
   BlocksRenderer,
@@ -9,6 +10,8 @@ import {
 type NowType = {
   id: number;
   description: BlocksContent;
+  createdAt: string;
+  updatedAt: string;
 };
 
 import fetchApi from "../lib/strapi";
@@ -18,20 +21,31 @@ const nows: NowType[] = await fetchApi({
   more: false,
 });
 
-// console.log(nows);
+console.log(nows);
 ---
 
 <Layout title="Now">
-  <main>
-    <h1>Now</h1>
+  <main class="gutters">
+    <h1 class="fore">Now</h1>
 
-    <hr />
-    {
-      nows.map((now) => (
-        <article>
-          <BlocksRenderer content={now.description} />
-        </article>
-      ))
-    }
+    <section class="cover split">
+      {
+        nows.map((now) => (
+          <article>
+            <p>Created at: {formatDate(now.createdAt)}</p>
+
+            {now.updatedAt !== now.createdAt && (
+              <p>Updated at: {formatDate(now.updatedAt)}</p>
+            )}
+            <BlocksRenderer content={now.description} />
+            <hr />
+          </article>
+          <div >
+            {/* // TODO: */}
+            now.image
+          </div>
+        ))
+      }
+    </section>
   </main>
 </Layout>

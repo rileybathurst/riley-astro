@@ -24,7 +24,5 @@
 /* this might end up overwriting some webpack so its after */
 @import "tryptych";
 
-@import "site-header";
-
 @import "pages/index";
 @import "pages/blog";

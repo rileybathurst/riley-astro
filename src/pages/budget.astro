@@ -20,17 +20,20 @@ const budgets: budgetsTypes = await fetchApi({
 ---
 
 <Layout title="Budget">
-  <main>
-    <h1>Budget</h1>
-    <section>
-      {
-        budgets.map((budget) => (
-          <article>
-            <h2>{budget.service}</h2>
-            <BlocksRenderer content={budget.description} />
-          </article>
-        ))
-      }
+  <main class="gutters">
+    <h1 class="fore">Budget</h1>
+    <section class="cover split">
+      <div>
+        {
+          budgets.map((budget) => (
+            <article>
+              <h2>{budget.service}</h2>
+              <BlocksRenderer content={budget.description} />
+              <hr />
+            </article>
+          ))
+        }
+      </div>
     </section>
   </main>
 </Layout>
