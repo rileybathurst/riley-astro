@@ -20,7 +20,9 @@ const about: aboutTypes = await fetchApi({
 
 <Layout title="About">
   <main>
-    <h1>About</h1>
-    <BlocksRenderer content={about.me} />
+    <section class="cover">
+      <h1>About</h1>
+      <BlocksRenderer content={about.me} />
+    </section>
   </main>
 </Layout>

@@ -98,7 +98,7 @@ export default async function fetchApi<T>({
 		};
 	}
 
-	// ! needs love
+// TODO: working on this with client blocks to have a start position to not double query the first x number
 	if (typeof limit?.start === "number") {
 		queryParams.pagination = {
 			...(queryParams.pagination ?? {}),

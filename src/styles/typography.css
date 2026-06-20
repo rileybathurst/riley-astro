@@ -81,7 +81,7 @@ code,
   font-family: var(--mono-font);
   font-variation-settings: "MONO" 0, "wght" 400;
   white-space: break-spaces;
-  line-height: var(--kilimanjaro);
+  line-height: var(--everest);
 }
 
 hr {

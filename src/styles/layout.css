@@ -17,7 +17,7 @@ body {
 }
 
 /*------------------------------------*/
-/* #Singles */
+/* #Widths */
 /*------------------------------------*/
 
 .vulture {
@@ -349,67 +349,6 @@ main,
   }
 }
 
-/* .spine {
-  grid-column: 3;
-  grid-row: 2/4;
-  writing-mode: vertical-rl;
-  /* match header-logo
-  justify-self: center;
-
-  @media (min-width: 40rem) {
-    grid-row: 2;
-    grid-column: 5;
-  }
-} */
-
-/* .single .spine {
-  grid-row: 1/3;
-  align-self: end;
-
-  @media (min-width: 40rem) {
-    grid-column: 3;
-  }
-} */
-
-.custom-header-media,
-.custom-header-photo,
-.custom-header-featured-video {
-  z-index: 10;
-  grid-row: 1 / 3;
-  grid-column: 2;
-
-  @media (min-width: 40rem) {
-    grid-row: 2;
-    grid-column: 2 / 4;
-  }
-
-  img,
-  picture {
-    /* small images still fill the box */
-    width: 100%;
-  }
-}
-
-.custom-header-featured-video {
-  /* https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
-  position: relative;
-  /* 16:9 */
-  padding-bottom: 56.25%;
-  height: 0;
-
-  @media (min-width: 40rem) {
-    grid-column: 2 / 4;
-  }
-}
-
-.custom-header-featured-video iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .single #top-menu {
   margin: 0;
 
@@ -435,63 +374,6 @@ main,
 
 .single .navigation-top {
   grid-row: 3;
-}
-
-/*--------------------------------------------------------------
-/* 3.0 Main */
-/* --------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-3.1 Category
---------------------------------------------------------------*/
-
-.category-header {
-  /* inside the margins */
-  /* TODO: 🦜 not a bird */
-  max-width: 77rem;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: var(--denali) 1fr 1fr 1fr var(--denali);
-  grid-gap: var(--vinson);
-}
-
-.cat-head {
-  grid-column: 2 / 5;
-  padding-bottom: var(--denali);
-
-  @media (min-width: 40rem) {
-    grid-column: 3;
-  }
-}
-
-.category-thumbnail {
-  grid-column: 2 / 5;
-  grid-row: 1 / 2;
-
-  @media (min-width: 40rem) {
-    grid-row: 1;
-  }
-}
-
-.category-sub {
-  width: 100%;
-  /* always stay inside the widest columns on the category pages */
-  max-width: var (--denali);
-  margin: 0 auto;
-  margin-bottom: var(--vinson);
-}
-
-.category-sub ul {
-  padding-left: 0;
-
-  li {
-    list-style: none;
-    text-align: center;
-  }
-}
-
-.category-break {
-  margin-bottom: var(--everest);
 }
 
 /*--------------------------------------------------------------
@@ -985,6 +867,12 @@ TODO: media variables are sass
 /* #Footer */
 /*--------------------------------------------------------------*/
 
+/* 
+this is under .gutters so it doesnt run
+footer {
+  margin-block-start: var(--everest);
+} */
+
 .footer_menu {
   display: grid;
   /* start simple stack then go to direction. maybe this should be a flex */
@@ -1191,6 +1079,17 @@ TODO: media variables are sass
   li {
     list-style: none;
     padding: 0;
+    margin: 0;
+
+    svg {
+      padding: var(--vinson);
+      width: calc(100% - var(--vinson) * 2);
+      height: auto;
+    }
+
+    .sr-only {
+      display: none;
+    }
   }
 }
 

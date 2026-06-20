@@ -32,10 +32,10 @@ console.log(nows);
       {
         nows.map((now) => (
           <article>
-            <p>Created at: {formatDate(now.createdAt)}</p>
+            <code>Created at: {formatDate(now.createdAt)}</code>
 
             {now.updatedAt !== now.createdAt && (
-              <p>Updated at: {formatDate(now.updatedAt)}</p>
+              <code>Updated at: {formatDate(now.updatedAt)}</code>
             )}
             <BlocksRenderer content={now.description} />
             <hr />

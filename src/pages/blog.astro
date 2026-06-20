@@ -1,5 +1,5 @@
 ---
-import Layout from "../components/layout.astro";
+import Trailhead from "../templates/trailhead.astro";
 import fetchApi from "../lib/strapi";
 
 type blogTypes = {
@@ -7,26 +7,10 @@ type blogTypes = {
   slug: string;
 };
 const blogs: blogTypes[] = await fetchApi({
-  endpoint: "blogs", // the content type to fetch
-
-  // more: false,
+  endpoint: "blogs",
 });
+
+console.log(blogs);
 ---
 
-<Layout>
-  <main class="gutters">
-    <h1 class="fore">Blog</h1>
-
-    <section class="cover">
-      {
-        blogs.map((blog) => (
-          <article class="split">
-            <a href={"/blog/" + blog.slug}>{blog.title}</a>
-            {/* // ? excerpt */}
-            <div>// TODO: image</div>
-          </article>
-        ))
-      }
-    </section>
-  </main>
-</Layout>
+<Trailhead trail="Blog" paths={blogs} breadcrumb="blog" />

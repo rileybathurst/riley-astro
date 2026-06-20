@@ -18,6 +18,10 @@ type projectTypes = {
   embed?: string;
   link?: string;
   description: BlocksContent;
+  personal: BlocksContent;
+  trades?: {
+    name: string;
+  }[];
 };
 
 export async function getStaticPaths() {

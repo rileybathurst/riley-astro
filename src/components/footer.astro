@@ -7,11 +7,21 @@ const about: AboutType = await fetchApi({
   more: false,
 });
 
+// TODO: move to strapi
 import Instagram from "../svg/instagram.astro";
 import LinkedIn from "../svg/linkedin.astro";
 import GitHub from "../svg/github.astro";
 import Phone from "./phone.astro";
+
+// TODO: make this way cleaner with an array
 ---
+
+<!-- ? I dont love this I try keep html and css seperate -->
+<style>
+  footer {
+    margin-block-start: var(--everest);
+  }
+</style>
 
 <footer class="gutters">
   <!-- <div class="fore"></div> -->

@@ -10,14 +10,16 @@ type blogTypes = {
   title: string;
   slug: string;
   article: BlocksContent;
-  tools?: string[];
+  tools?: {
+    name: string;
+    url?: string;
+  }[];
 };
 
 export async function getStaticPaths() {
   const blogs = await fetchApi<blogTypes[]>({
-    endpoint: "blogs", // the content type to fetch
+    endpoint: "blogs",
     fields: ["tools"],
-    // more: true,
   });
 
   return blogs.map((blog) => ({
@@ -25,31 +27,33 @@ export async function getStaticPaths() {
     props: blog,
   }));
 }
-// console.log('Fetching blog data for slug page');
-// console.log(Astro.params.slug);
 const blog = Astro.props;
-
-// console.log(blog);
-// console.log(blog[0].title);
 ---
 
 <!-- TODO: excerpt in SEO --><!-- TODO: image in header -->
-<Layout>
+<Layout title={blog.title}>
   <main>
-    <h1>{blog.title}</h1>
-    <!-- ! article is in markdown move it to blocks -->
-    {blog.article}
-    <!-- <BlocksRenderer content={blog.article} /> -->
-    <hr />
-    {
-      blog.tools &&
-        blog.tools.map((tool) => (
-          <p>
-            {/* <a href={tool.url}> */}
-            {tool.name}
-            {/* </a> */}
-          </p>
-        ))
-    }
+    <!-- <h1 class="fore">{blog.title}</h1> -->
+
+    <section class="cover split">
+      <article>
+        <BlocksRenderer content={blog.article} />
+      </article>
+
+      <div>
+        {
+          blog.tools && (
+            <div>
+              <h2>Tools</h2>
+              {blog.tools.map((tool) => (
+                <p>
+                  <a href={`/tool/${tool.url}`}>{tool.name}</a>
+                </p>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </section>
   </main>
 </Layout>

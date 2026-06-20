@@ -57,10 +57,7 @@ const { pathname } = Astro.url;
           <h2 class="understory bathurst">{about.name.split(" ")[1]}</h2>
         </article>
       ) : (
-        <article class="full">
-          {/* ? this is very maybe at best */}
-          <h1 class="mono-font">{Astro.props.title}</h1>
-        </article>
+        <h1 class="full title mono-font">{Astro.props.title}</h1>
       )
     }
 

@@ -1,5 +1,17 @@
 ---
 import Layout from "../components/layout.astro";
+
+type pathTypes =
+  | {
+      title: string;
+      slug: string;
+      name?: never;
+    }
+  | {
+      name: string;
+      slug: string;
+      title?: never;
+    };
 ---
 
 <Layout>
@@ -8,9 +20,15 @@ import Layout from "../components/layout.astro";
 
     <section class="cover">
       {
-        Astro.props.paths.map((path) => (
+        Astro.props.paths.map((path: pathTypes) => (
           <article class="split">
-            <a href={`/${path.trail}/${path.slug}`}>{path.title}</a>
+            {typeof Astro.props.breadcrumb === "string" ? (
+              <a href={`/${Astro.props.breadcrumb}/${path.slug}`}>
+                {"title" in path ? path.title : path.name}
+              </a>
+            ) : (
+              <a href={path.slug}>{"title" in path ? path.title : path.name}</a>
+            )}
           </article>
         ))
       }
