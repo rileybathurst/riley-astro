@@ -12,8 +12,6 @@ export async function getStaticPaths() {
     endpoint: "styleguides", // the content type to fetch
   });
 
-  console.log(styleguides);
-
   return styleguides
     .filter((styleguide) => styleguide.slug != null)
     .map((styleguide) => ({

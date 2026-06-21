@@ -9,8 +9,6 @@ type blogTypes = {
 const blogs: blogTypes[] = await fetchApi({
   endpoint: "blogs",
 });
-
-console.log(blogs);
 ---
 
 <Trailhead trail="Blog" paths={blogs} breadcrumb="blog" />
