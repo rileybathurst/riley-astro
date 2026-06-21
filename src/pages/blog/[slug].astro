@@ -45,11 +45,12 @@ const blog = Astro.props;
           blog.tools && (
             <div>
               <h2>Tools</h2>
-              {blog.tools.map((tool) => (
-                <p>
-                  <a href={`/tool/${tool.url}`}>{tool.name}</a>
-                </p>
-              ))}
+              {blog.tools.length > 0 &&
+                blog.tools.map((tool) => (
+                  <p>
+                    <a href={`/tool/${tool.url}`}>{tool.name}</a>
+                  </p>
+                ))}
             </div>
           )
         }
