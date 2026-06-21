@@ -17,6 +17,7 @@ type projectTypes = {
   };
   embed?: string;
   link?: string;
+  repo?: string;
   description: BlocksContent;
   personal: BlocksContent;
   trades?: {
@@ -28,7 +29,7 @@ export async function getStaticPaths() {
   const projects = await fetchApi<projectTypes[]>({
     endpoint: "projects", // the content type to fetch
 
-    fields: ["client", "trades"],
+    fields: ["client", "trades", "platforms", "tools"],
     // more: true,
   });
 
@@ -41,7 +42,6 @@ export async function getStaticPaths() {
 const project = Astro.props;
 ---
 
-<!-- TODO: --><!-- platforms --><!-- tools --><!-- trades -->
 <Layout
   title={project.title}
   breadcrumbs={[
@@ -63,9 +63,15 @@ const project = Astro.props;
           </a>
         </h2>
         {
-          project.link && (
+          (project.link || project.repo) && (
             <p>
-              <a href={project.link}>{project.link}</a>
+              {project.link && <a href={project.link}>View Project</a>}
+              <br />
+              {project.repo && (
+                // TODO: check if its github and add the icon
+
+                <a href={project.repo}>View Code {project.repo}</a>
+              )}
             </p>
           )
         }
@@ -81,11 +87,31 @@ const project = Astro.props;
           )
         }
 
-        <BlocksRenderer content={project.description} />
+        {
+          project.description && (
+            <BlocksRenderer content={project.description} />
+          )
+        }
       </div>
 
       <div>
-        <BlocksRenderer content={project.personal} />
+        <!-- TODO: working space -->
+        {
+          project.platforms && (
+            <p>
+              Platforms:{" "}
+              {project.platforms.map((platform) => (
+                <div>
+                  <div set:html={platform.svg} aria-hidden="true" />
+                  {/* {platform.svg} */}
+                  {platform.name}
+                </div>
+              ))}
+            </p>
+          )
+        }
+
+        {project.personal && <BlocksRenderer content={project.personal} />}
       </div>
 
       <!--
