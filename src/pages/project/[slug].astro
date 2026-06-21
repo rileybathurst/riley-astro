@@ -15,9 +15,17 @@ type projectTypes = {
     name: string;
     slug: string;
   };
+  hero: {
+    url: string;
+  };
   embed?: string;
-  link?: string;
-  repo?: string;
+  link?: {
+    link: string;
+    platform: {
+      name: string;
+      svg: string;
+    };
+  }[];
   description: BlocksContent;
   personal: BlocksContent;
   trades?: {
@@ -29,7 +37,7 @@ export async function getStaticPaths() {
   const projects = await fetchApi<projectTypes[]>({
     endpoint: "projects", // the content type to fetch
 
-    fields: ["client", "trades", "platforms", "tools"],
+    fields: ["client", "trades", "tools", "link", "link.platform", "hero"],
     // more: true,
   });
 
@@ -40,22 +48,32 @@ export async function getStaticPaths() {
 }
 
 const project = Astro.props;
+
+const clientName = project.client?.name?.trim();
+const shortTitle =
+  clientName && project.title.startsWith(clientName)
+    ? project.title
+        .slice(clientName.length)
+        .replace(/^[\s:,-]+/, "")
+        .trim()
+    : project.title;
 ---
 
 <Layout
-  title={project.title}
+  title={shortTitle}
   breadcrumbs={[
     { title: "Clients", slug: "client" },
     ...(project.client
       ? [{ title: project.client.name, slug: project.client.slug }]
       : []),
   ]}
-  embed={project.embed}
+  {...project.hero && { hero: project.hero.url }}
+  {...project.embed && { embed: project.embed }}
 >
   <main>
     <section class="cover split">
       <div>
-        <h1>{project.title}</h1>
+        <h1>{shortTitle}</h1>
         <h2>
           Client -
           <a href={`/client/${project.client?.slug}`}>
@@ -63,19 +81,21 @@ const project = Astro.props;
           </a>
         </h2>
         {
-          (project.link || project.repo) && (
-            <p>
-              {project.link && <a href={project.link}>View Project</a>}
-              <br />
-              {project.repo && (
-                // TODO: check if its github and add the icon
-
-                <a href={project.repo}>View Code {project.repo}</a>
-              )}
-            </p>
+          project.link && (
+            <ul class="blocks">
+              {project.link.map((link) => (
+                <li>
+                  <a href={link.link}>
+                    <div set:html={link.platform.svg} aria-hidden="true" />
+                    <span class="sr-only">{link.platform.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           )
         }
 
+        <!-- TODO: I dont really know what im going with here -->
         {
           project.trades && (
             <p>
@@ -95,22 +115,6 @@ const project = Astro.props;
       </div>
 
       <div>
-        <!-- TODO: working space -->
-        {
-          project.platforms && (
-            <p>
-              Platforms:{" "}
-              {project.platforms.map((platform) => (
-                <div>
-                  <div set:html={platform.svg} aria-hidden="true" />
-                  {/* {platform.svg} */}
-                  {platform.name}
-                </div>
-              ))}
-            </p>
-          )
-        }
-
         {project.personal && <BlocksRenderer content={project.personal} />}
       </div>
 

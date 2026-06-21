@@ -1,0 +1,37 @@
+---
+import Layout from "../../components/layout.astro";
+import fetchApi from "../../lib/strapi";
+import {
+  BlocksRenderer,
+  type BlocksContent,
+} from "@strapi/blocks-react-renderer";
+
+type tradeTypes = {
+  name: string;
+  description: BlocksContent;
+  thoughts: BlocksContent;
+  slug: string;
+};
+
+export async function getStaticPaths() {
+  const trades = await fetchApi<tradeTypes[]>({
+    endpoint: "trades",
+  });
+
+  return trades.map((trade) => ({
+    params: { slug: trade.slug },
+    props: trade,
+  }));
+}
+const trade = Astro.props;
+console.log(trade);
+---
+
+<Layout>
+  <main class="gutters">
+    <h1 class="fore">{trade.name}</h1>
+    <article class="cover split">
+      <div>Projects</div>
+    </article>
+  </main>
+</Layout>
