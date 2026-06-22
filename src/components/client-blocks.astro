@@ -1,12 +1,7 @@
 ---
 import fetchApi from "../lib/strapi";
-type clientType = {
-  id: number;
-  name: string;
-  slug: string;
-  order: number;
-  svg: string;
-};
+import type { clientType } from "../types/client-type";
+
 const clients: clientType[] = await fetchApi({
   endpoint: "clients", // the content type to fetch
   limit: {

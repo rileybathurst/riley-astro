@@ -5,10 +5,51 @@ import fetchApi from "../lib/strapi";
 type blogTypes = {
   title: string;
   slug: string;
+  dateCreated?: string;
+  createdAt?: string;
 };
+
+type projectTypes = {
+  title: string;
+  slug: string;
+  dateCreated?: string;
+  createdAt?: string;
+};
+
+type trailPath = {
+  title: string;
+  slug: string;
+  sortDate: number;
+};
+
 const blogs: blogTypes[] = await fetchApi({
   endpoint: "blogs",
 });
+
+const projects: projectTypes[] = await fetchApi({
+  endpoint: "projects",
+});
+
+const blogsProjects = [
+  ...blogs.map(
+    (blog): trailPath => ({
+      title: blog.title,
+      slug: `/blog/${blog.slug}`,
+      sortDate: new Date(blog.dateCreated ?? blog.createdAt ?? 0).getTime(),
+    }),
+  ),
+  ...projects.map(
+    (project): trailPath => ({
+      title: project.title,
+      slug: `/project/${project.slug}`,
+      sortDate: new Date(
+        project.dateCreated ?? project.createdAt ?? 0,
+      ).getTime(),
+    }),
+  ),
+]
+  .sort((a, b) => b.sortDate - a.sortDate)
+  .map(({ title, slug }) => ({ title, slug }));
 ---
 
-<Trailhead trail="Blog" paths={blogs} breadcrumb="blog" />
+<Trailhead trail="Blog" paths={blogsProjects} />

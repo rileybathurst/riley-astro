@@ -1,28 +1,53 @@
 ---
+import fetchApi from "../lib/strapi";
 import Layout from "../components/layout.astro";
-import ClientBlocks from "../components/client-blocks.astro";
+import type { clientType } from "../types/client-type";
+
+const clients: clientType[] = await fetchApi({
+  endpoint: "clients",
+});
+
+const firstEigthClients = clients.slice(0, 8);
+const remainingClients = clients.slice(8);
 ---
 
 <Layout title="Clients">
   <section class="gutters">
     <h1 class="fore mono-font">Clients</h1>
 
-    <ClientBlocks />
-    <!-- TODO -->
-    <!-- <p class="spine">lorem ipsum</p> -->
+    <ul class="cover blocks">
+  {firstEigthClients.map((client: clientType) => (
+    <li>
+      <a href={`/client/${client.slug}`}
+      >
+      {client.svg ? (
+        // * in Astro, set:html is the equivalent of React’s dangerouslySetInnerHTML
+        <div set:html={client.svg} aria-hidden="true" />
+        <h2 class="sr-only">
+          <a href={`/client/${client.slug}`}>{client.name}</a>
+        </h2>
+      ) : (
+        <h4>
+          <a href={`/client/${client.slug}`}>{client.name}</a>
+        </h4>
+      )}
+      </a>
+    </li>
+    ))
+  }
+</ul>
   </section>
 
   <section class="gutters">
     <section class="cover">
       <section>
-        <!-- TODO: remove the blocks -->
-        <!-- {
-          clients.map((client) => (
+        {
+          remainingClients.map((client) => (
             <article>
               <a href={`/client/${client.slug}`}>{client.name}</a>
             </article>
           ))
-        } -->
+        }
       </section>
     </section>
   </section>
